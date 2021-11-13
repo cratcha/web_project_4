@@ -1,3 +1,4 @@
 .profile__name {
   color: #ffffff;
+  grid-area: name;
 }

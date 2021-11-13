@@ -1,0 +1,6 @@
+.profile__edit-button {
+  grid-area: edit;
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+}
