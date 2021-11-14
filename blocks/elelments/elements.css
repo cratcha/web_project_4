@@ -8,3 +8,12 @@
   grid-template-rows: repeat(2, 1fr);
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 360px) {
+  .elements {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    max-width: 320px;
+    margin: 0 19px;
+  }
+}
