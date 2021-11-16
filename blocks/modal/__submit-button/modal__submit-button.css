@@ -18,3 +18,13 @@
   cursor: pointer;
   opacity: 0.8;
 }
+
+@media screen and (max-width: 320px) {
+  .modal__submit-button {
+    width: 238px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 60px;
+  }
+}
