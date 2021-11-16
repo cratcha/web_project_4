@@ -1,16 +1,16 @@
 # Project 4: Around The U.S.
 
-### Overview
+By Ekaterina Cratcha
 
-* Figma
-* Images
+Link to the project on my [Github Pages](https://cratcha.github.io/web_project_4/).
 
-**Figma**
+### Languages
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+- HTML
+- CSS
+- JavaScript
 
-**Images**
+**Overview**
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+"Aroung The US" project is an interactive page where users can add, remove, or like photos. This is my first time using JavaScript (functions, if statements, QuerySelectors, addEventListener).
+I also used HTML and CSS (flexbox, grid, mediaQueries)to build and style responsive web page.
