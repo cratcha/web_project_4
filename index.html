@@ -27,14 +27,14 @@
           <div class="profile__info">
             <h1 class="profile__name" id="profile-name">Jacques Cousteau</h1>
             <p class="profile__occupation" id="profile-description">Explorer</p>
-            <button class="profile__edit-button" id="open-modal-button">
-              <img src="./images/Edit-button.svg" alt="edit button" />
-            </button>
+            <button
+              class="profile__edit-button"
+              id="open-modal-button"
+              type="button"
+            ></button>
           </div>
         </div>
-        <button class="profile__add-button">
-          <img src="./images/add-button.svg" alt="add button" />
-        </button>
+        <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
         <article class="element">
@@ -45,9 +45,7 @@
           />
           <div class="element__text-box">
             <h2 class="element__title">Yosemite Valley</h2>
-            <button class="element__button">
-              <img src="./images/like-icon.svg" alt="like-button" />
-            </button>
+            <button class="element__button" type="button"></button>
           </div>
         </article>
         <article class="element">
@@ -58,9 +56,7 @@
           />
           <div class="element__text-box">
             <h2 class="element__title">Lake Louise</h2>
-            <button class="element__button">
-              <img src="./images/like-icon.svg" alt="like-button" />
-            </button>
+            <button class="element__button" type="button"></button>
           </div>
         </article>
         <article class="element">
@@ -71,9 +67,7 @@
           />
           <div class="element__text-box">
             <h2 class="element__title">Bald Mountains</h2>
-            <button class="element__button">
-              <img src="./images/like-icon.svg" alt="like-button" />
-            </button>
+            <button class="element__button" type="button"></button>
           </div>
         </article>
         <article class="element">
@@ -84,9 +78,7 @@
           />
           <div class="element__text-box">
             <h2 class="element__title">Latemar</h2>
-            <button class="element__button">
-              <img src="./images/like-icon.svg" alt="like-button" />
-            </button>
+            <button class="element__button" type="button"></button>
           </div>
         </article>
         <article class="element">
@@ -97,9 +89,7 @@
           />
           <div class="element__text-box">
             <h2 class="element__title">Vanoise National Park</h2>
-            <button class="element__button">
-              <img src="./images/like-icon.svg" alt="like-button" />
-            </button>
+            <button class="element__button" type="button"></button>
           </div>
         </article>
         <article class="element">
@@ -110,9 +100,7 @@
           />
           <div class="element__text-box">
             <h2 class="element__title">Lago di Braies</h2>
-            <button class="element__button">
-              <img src="./images/like-icon.svg" alt="like-button" />
-            </button>
+            <button class="element__button" type="button"></button>
           </div>
         </article>
       </section>
@@ -124,7 +112,7 @@
       <div class="modal__content">
         <button class="modal__close-button"></button>
         <h1 class="modal__title">Edit Profile</h1>
-        <form class="modal__form" id="edit-profile-form">
+        <form class="modal__form" name="modal-form" id="edit-profile-form">
           <input class="modal__input" name="name" placeholder="Name" />
           <input
             class="modal__input"
