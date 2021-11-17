@@ -5,21 +5,18 @@
   padding: 0;
   grid-gap: 17px 20px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   box-sizing: border-box;
 }
 
 @media screen and (max-width: 830px) {
   .elements {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
   }
 }
 
 @media screen and (max-width: 540px) {
   .elements {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
     max-width: 320px;
     margin: 0 19px;
   }

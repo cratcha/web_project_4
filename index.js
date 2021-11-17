@@ -16,8 +16,8 @@ editProfileCloseButton.addEventListener("click", () => {
 
 openModalButton.addEventListener("click", () => {
     editProfileModal.classList.add("modal_open");
-    nameInput.value = "Jacques Cousteau"
-    descriptionInput.value = "Explorer"
+    nameInput.value = profileName.innerText;
+    descriptionInput.value = profileDescription.innerText;
 })
 
 editProfileModal.addEventListener("mousedown", (e) => {

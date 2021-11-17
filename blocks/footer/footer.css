@@ -2,12 +2,12 @@
   display: flex;
   margin: 68px auto 60px;
   max-width: 880px;
-  font-family: Inter;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   color: #545454;
+  width: 100%;
 }
 
 @media screen and (max-width: 540px) {
