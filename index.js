@@ -32,3 +32,31 @@ editProfileForm.addEventListener("submit", (e) => {
     profileDescription.textContent = descriptionInput.value;
     editProfileModal.classList.remove("modal_open");
 })
+
+const cardTemplate = document.querySelector("#element-template");
+const cardList = document.querySelector(".elements");
+
+function createCard(data) { 
+    const card = cardTemplate.content.querySelector(".element").cloneNode(true);
+    const imageElement = card.querySelector(".element__photo");
+    const titleElement = card.querySelector(".element__title");
+
+    imageElement.src = data.url;
+    titleElement.textContent = data.title;
+
+    return card;
+    
+}
+
+function addCardToPage(element) {
+    cardList.prepend(element);
+
+}
+
+createCard({
+    url: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+    title: "Yosemite Valley",
+});
+
+
+

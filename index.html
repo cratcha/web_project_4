@@ -37,72 +37,7 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
-        <article class="element">
-          <img
-            src="./images/kirill-pershin-1088404-unsplash-2.png"
-            alt="a photo of Yosemite Valley"
-            class="element__photo"
-          />
-          <div class="element__text-box">
-            <h2 class="element__title">Yosemite Valley</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            src="./images/kirill-pershin-1404681-unsplash.png"
-            alt="a photo of Lake Louise"
-            class="element__photo"
-          />
-          <div class="element__text-box">
-            <h2 class="element__title">Lake Louise</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            src="./images/kirill-pershin-1556355-unsplash.png"
-            alt="a photo of sunset in the mountains"
-            class="element__photo"
-          />
-          <div class="element__text-box">
-            <h2 class="element__title">Bald Mountains</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            src="./images/kirill-pershin-1404681-unsplash-2.png"
-            alt="a photo of star sky in the mountains"
-            class="element__photo"
-          />
-          <div class="element__text-box">
-            <h2 class="element__title">Latemar</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            src="./images/kirill-pershin-1556355-unsplash-2.png"
-            alt="a photo of a lake in the mountains"
-            class="element__photo"
-          />
-          <div class="element__text-box">
-            <h2 class="element__title">Vanoise National Park</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            src="./images/kirill-pershin-1088404-unsplash.png"
-            alt="a photo of boats on the mountain lake"
-            class="element__photo"
-          />
-          <div class="element__text-box">
-            <h2 class="element__title">Lago di Braies</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
+        <!-- Filled dynamically -->
       </section>
     </main>
     <footer class="footer">
@@ -123,6 +58,15 @@
         </form>
       </div>
     </div>
+    <template id="element-template">
+      <li class="element">
+        <img src=" " alt=" " class="element__photo" />
+        <div class="element__text-box">
+          <h2 class="element__title"></h2>
+          <button class="element__button" type="button"></button>
+        </div>
+      </li>
+    </template>
     <script src="./index.js"></script>
   </body>
 </html>
