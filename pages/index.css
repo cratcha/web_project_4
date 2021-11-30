@@ -27,3 +27,6 @@
 @import url("../blocks/modal/__submit-button/modal__submit-button.css");
 @import url("../blocks/modal/_open/modal_open.css");
 @import url("../blocks/modal/__input/modal__input.css");
+@import url("../blocks/modal/__caption/modal__caption.css");
+@import url("../blocks/modal/__image/modal__image.css");
+@import url("../blocks/modal/__content/_type/model__content_type_image.css");
