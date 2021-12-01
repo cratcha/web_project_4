@@ -43,6 +43,9 @@ function createCard(data) {
     const card = cardTemplate.content.querySelector(".element").cloneNode(true);
     const imageElement = card.querySelector(".element__photo");
     const titleElement = card.querySelector(".element__title");
+
+    const trashButton = card.querySelector(".element__trash");
+    const likeButton = card.querySelector(".element__like-button");
      
     imageElement.src = data.url;
     titleElement.textContent = data.title;
@@ -53,7 +56,16 @@ function createCard(data) {
         modalImageElement.src = data.url;
         modalCaption.textContent = data.title;
         openModal(imageModal);
-    })
+    });
+
+    trashButton.addEventListener('click', () => {
+        const deleteCard = trashButton.closest(".element");
+        deleteCard.remove();
+    });
+
+    likeButton.addEventListener('click', () => {
+        likeButton.classList.toggle('element__like-button_activated');
+    });
 
 
     return card;

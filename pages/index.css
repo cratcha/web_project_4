@@ -16,7 +16,9 @@
 @import url("../blocks/element/__photo/element__photo.css");
 @import url("../blocks/element/__text-box/element__text-box.css");
 @import url("../blocks/element/__title/element__title.css");
-@import url("../blocks/element/__button/element__button.css");
+@import url("../blocks/element/__like-button/element__like-button.css");
+@import url("../blocks/element/__like-button_activated/element__llike-button_activated.css");
+@import url("../blocks/element/__trash/element__trash.css");
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
 @import url("../blocks/modal/modal.css");

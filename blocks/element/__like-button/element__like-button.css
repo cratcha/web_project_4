@@ -1,4 +1,4 @@
-.element__button {
+.element__like-button {
   display: flex;
   justify-content: center;
   align-self: center;
@@ -11,7 +11,7 @@
   width: 21px;
 }
 
-.element__button:hover {
+.element__like-button:hover {
   cursor: pointer;
   opacity: 0.5;
 }
