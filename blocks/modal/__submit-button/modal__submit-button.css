@@ -19,7 +19,7 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 500px) {
   .modal__submit-button {
     width: 238px;
     height: 46px;
