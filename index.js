@@ -72,6 +72,9 @@ function createCard(data) {
     
 }
 
+
+
+
 function addCardToPage(element) {
     cardList.prepend(element);
 }
@@ -136,12 +139,16 @@ function closeModal(modal) {
     modal.classList.remove("modal_open");
 }
 
-//const data = {}
-//data.url = linkInput.value;
-//data.title = titleInput.value;
-//renderCard(data);
-
-
-//add image modal
-
 const imageModal = document.querySelector("#image-modal");
+
+
+const newCardForm = document.querySelector("#add-card-form");
+const inputLink = newCardForm.url;
+const inputTitle = newCardForm.title;
+
+newCardForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = { url: inputLink.value, title: inputTitle.value };
+    renderCard(data);
+    closeModal(addCardModal);
+});
