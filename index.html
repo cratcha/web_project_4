@@ -72,13 +72,18 @@
             name="url"
             placeholder="Image link"
             type="text"
+            required
           />
+          <span class="modal__error-text">Please enter a web address.</span>
           <input
             class="modal__input"
             name="title"
             placeholder="Title"
             type="text"
+            required
+            minlength="3"
           />
+          <span class="modal__error-text">Please fill out this field.</span>
           <button type="submit" class="modal__submit-button">Create</button>
         </form>
       </div>
@@ -101,5 +106,6 @@
       </article>
     </template>
     <script src="./index.js"></script>
+    <script src="./validate.js"></script>
   </body>
 </html>
