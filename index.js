@@ -158,3 +158,10 @@ newCardForm.addEventListener("submit", (e) => {
     newCardForm.reset();
     closeModal(addCardModal);
 });
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        const escapeModal = document.querySelector(".modal_open");
+       closeModal(escapeModal);
+    }
+})

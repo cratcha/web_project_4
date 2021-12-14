@@ -2,6 +2,7 @@ enableValidation({
 formSelector: ".modal__form",
 inputSelector: ".modal__input",
 errorTextSelector: ".modal__error-text",
+submitButtonSelector: ".modal__submit-button",
 })
 
 
@@ -13,12 +14,13 @@ setEventListeners(form, settings);
 }
 
 function setEventListeners(form, settings) {
-const inputs = form.querySelectorAll(settings.inputSelector);
-inputs.forEach((input) => {
+    const inputs = form.querySelectorAll(settings.inputSelector);
+    inputs.forEach((input) => {
     input.addEventListener('input', (event) => {
-checkInputValidity(input)
+        checkInputValidity(input)
     })
 })
+const submitButton = form.querySelector(settings.submitButtonSelector);
 }
 
 function checkInputValidity(input) {
@@ -30,9 +32,9 @@ function checkInputValidity(input) {
 }
 
 function removeErrorStyles(input) {
-    input.classList.remove('.modal__input_has-error')
+    input.classList.remove('modal__input_has-error')
 }
 
 function addErrorStyles(input) {
-    input.classList.add('.modal__input_has-error')
+    input.classList.add('modal__input_has-error')
 }
