@@ -56,9 +56,9 @@ function openModal(modal) {
     modal.classList.add("modal_open");
 }
 
-editProfileCloseButton.addEventListener("click", () => {
+/* editProfileCloseButton.addEventListener("click", () => {
     closeModal(modal);
-})
+}) */
 
 openProfileModalButton.addEventListener("click", () => {
     openModal(editProfileModal);
@@ -137,6 +137,7 @@ modalCloseButtons.forEach((modalCloseButton) => {
    modalCloseButton.addEventListener("click", (event) => {
     const modal = modalCloseButton.closest(".modal");
     closeModal(modal)
+
    });
 });
 
