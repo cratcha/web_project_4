@@ -1,11 +1,3 @@
-enableValidation({
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  errorTextSelector: ".modal__error-text",
-  submitButtonSelector: ".modal__submit-button",
-  inactiveButtonClass: ".modal__submit-button_disabled",
-});
-
 function enableValidation(settings) {
   const forms = document.querySelectorAll(settings.formSelector);
   forms.forEach((form) => {
@@ -14,13 +6,13 @@ function enableValidation(settings) {
 }
 
 function setEventListeners(form, settings) {
-  const inputs = form.querySelectorAll(settings.inputSelector);
-  // const buttonElement = form.querySelector(settings.submitButtonSelector);
-  // const disabledButton = form.querySelector(settings.inactiveButtonClass)
+  const inputs = Array.from(form.querySelectorAll(settings.inputSelector));
+  const buttonElement = form.querySelector(settings.submitButtonSelector);
+  toggleButtonState(inputs, buttonElement);
   inputs.forEach((input) => {
     input.addEventListener("input", (event) => {
       checkInputValidity(input, form);
-      //toggleButtonState(input, buttonElement, disabledButton);
+      toggleButtonState(inputs, buttonElement);
     });
   });
 }
@@ -34,6 +26,22 @@ function checkInputValidity(input, form) {
     addErrorMessage(input, form);
   }
 }
+
+const toggleButtonState = (inputs, buttonElement) => {
+  if (hasInvalidInput(inputs)) {
+    buttonElement.classList.add("modal__submit-button_disabled");
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove("modal__submit-button_disabled");
+    buttonElement.disabled = false;
+  }
+};
+
+const hasInvalidInput = (inputs) => {
+  return inputs.some((input) => {
+    return !input.validity.valid;
+  });
+};
 
 const addErrorMessage = (input, form) => {
   const formError = form.querySelector(`#${input.id}-error`);
@@ -50,16 +58,6 @@ const removeErrorMessage = (input, form) => {
   formError.textContent = " ";
 };
 
-/* const toggleButtonState = (input, buttonElement, disabledButton) => {
-    if (!input.validity.valid) {
-        buttonElement.classList.add(disabledButton);
-        buttonElement.disabled = true;
-    } else {
-        buttonElement.classList.remove(disabledButton);
-        buttonElement.disabled = false;
-    }
-} */
-
 function removeErrorStyles(input) {
   input.classList.remove("modal__input_has-error");
 }
@@ -67,3 +65,10 @@ function removeErrorStyles(input) {
 function addErrorStyles(input) {
   input.classList.add("modal__input_has-error");
 }
+enableValidation({
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  errorTextSelector: ".modal__error-text",
+  submitButtonSelector: ".modal__submit-button",
+  inactiveButtonClass: ".modal__submit-button_disabled",
+});
