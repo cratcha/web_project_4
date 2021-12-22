@@ -27,7 +27,7 @@ function setEventListeners(form, settings) {
   });
 }
 
-const toggleButtonState = (inputs, buttonElement, settings) => {
+function toggleButtonState(inputs, buttonElement, settings) {
   if (hasInvalidInput(inputs)) {
     buttonElement.classList.add(settings.inactiveButtonClass);
     buttonElement.disabled = true;
@@ -35,7 +35,7 @@ const toggleButtonState = (inputs, buttonElement, settings) => {
     buttonElement.classList.remove(settings.inactiveButtonClass);
     buttonElement.disabled = false;
   }
-};
+}
 
 function checkInputValidity(input, form, settings) {
   if (input.validity.valid) {
@@ -47,11 +47,11 @@ function checkInputValidity(input, form, settings) {
   }
 }
 
-const hasInvalidInput = (inputs) => {
+function hasInvalidInput(inputs) {
   return inputs.some((input) => {
     return !input.validity.valid;
   });
-};
+}
 
 const addErrorMessage = (input, form, settings) => {
   const formError = form.querySelector(`#${input.id}-error`);
