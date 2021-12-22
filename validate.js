@@ -3,9 +3,9 @@ enableValidation({
   inputSelector: ".modal__input",
   errorTextSelector: ".modal__error-text",
   submitButtonSelector: ".modal__submit-button",
-  inactiveButtonClass: ".modal__submit-button_disabled",
-  inputWithError: ".modal__input_has-error",
-  errorTextVisible: ".modal__error-text_visible",
+  inactiveButtonClass: "modal__submit-button_disabled",
+  inputWithError: "modal__input_has-error",
+  errorTextVisible: "modal__error-text_visible",
 });
 
 function enableValidation(settings) {
