@@ -14,6 +14,7 @@ const profileDescription = document.querySelector("#profile-description");
 const modalCloseButtons = document.querySelectorAll(".modal__close-button");
 const imageModal = document.querySelector("#image-modal");
 const newCardForm = document.querySelector("#add-card-form");
+const submitButton = document.querySelector(".modal__submit-button");
 const inputLink = newCardForm.url;
 const inputTitle = newCardForm.title;
 
@@ -51,10 +52,19 @@ const initialCards = [
 
 function closeModal(modal) {
   modal.classList.remove("modal_open");
+  document.removeEventListener("keydown", closeByEscape);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_open");
+  document.addEventListener("keydown", closeByEscape);
+}
+
+function closeByEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_open");
+    closeModal(openedModal);
+  }
 }
 
 editProfileCloseButton.addEventListener("click", () => {
@@ -73,11 +83,24 @@ editProfileModal.addEventListener("mousedown", (e) => {
   }
 });
 
+addCardModal.addEventListener("mousedown", (e) => {
+  if (e.target === addCardModal) {
+    closeModal(addCardModal);
+  }
+});
+
+imageModal.addEventListener("mousedown", (e) => {
+  if (e.target === imageModal) {
+    closeModal(imageModal);
+  }
+});
+
 editProfileForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
-  editProfileModal.classList.remove("modal_open");
+  closeModal(editProfileModal);
 });
 
 function createCard(data) {
@@ -132,12 +155,6 @@ modalCloseButtons.forEach((modalCloseButton) => {
   });
 });
 
-addCardModal.addEventListener("mousedown", (e) => {
-  if (e.target === addCardModal) {
-    closeModal(addCardModal);
-  }
-});
-
 addCardButton.addEventListener("click", () => {
   openModal(addCardModal);
 });
@@ -147,12 +164,6 @@ newCardForm.addEventListener("submit", (e) => {
   const data = { url: inputLink.value, title: inputTitle.value };
   renderCard(data);
   newCardForm.reset();
-  closeModal(addCardModal);
-});
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    const escapeModal = document.querySelector(".modal_open");
-    closeModal(escapeModal);
-  }
+  closeModal(addCardModal);
 });
