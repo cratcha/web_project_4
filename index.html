@@ -85,17 +85,6 @@
         <form class="modal__form" name="add-card" id="add-card-form">
           <input
             class="modal__input"
-            name="url"
-            placeholder="Image link"
-            id="link"
-            type="url"
-            required
-          />
-          <span class="modal__error-text" id="link-error"
-            >Please enter a web address</span
-          >
-          <input
-            class="modal__input"
             name="title"
             placeholder="Title"
             id="title"
@@ -106,6 +95,17 @@
           />
           <span class="modal__error-text" id="title-error"
             >Please fill out this field.</span
+          >
+          <input
+            class="modal__input"
+            name="url"
+            placeholder="Image link"
+            id="link"
+            type="url"
+            required
+          />
+          <span class="modal__error-text" id="link-error"
+            >Please enter a web address</span
           >
           <button disabled type="submit" class="modal__submit-button">
             Create

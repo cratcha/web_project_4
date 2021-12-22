@@ -58,6 +58,11 @@ function closeModal(modal) {
 function openModal(modal) {
   modal.classList.add("modal_open");
   document.addEventListener("keydown", closeByEscape);
+  disableSubmitButton();
+}
+
+function disableSubmitButton() {
+  submitButton.disabled = true;
 }
 
 function closeByEscape(evt) {
@@ -67,9 +72,9 @@ function closeByEscape(evt) {
   }
 }
 
-editProfileCloseButton.addEventListener("click", () => {
+/*editProfileCloseButton.addEventListener("click", () => {
   closeModal(modal);
-});
+});*/
 
 openProfileModalButton.addEventListener("click", () => {
   openModal(editProfileModal);
@@ -164,6 +169,6 @@ newCardForm.addEventListener("submit", (e) => {
   const data = { url: inputLink.value, title: inputTitle.value };
   renderCard(data);
   newCardForm.reset();
-
+  submitButton.disabled = true;
   closeModal(addCardModal);
 });
