@@ -14,7 +14,7 @@ const profileDescription = document.querySelector("#profile-description");
 const modalCloseButtons = document.querySelectorAll(".modal__close-button");
 const imageModal = document.querySelector("#image-modal");
 const newCardForm = document.querySelector("#add-card-form");
-const submitButton = document.querySelector(".modal__submit-button");
+const cardSubmitButton = newCardForm.querySelector(".modal__submit-button");
 const inputLink = newCardForm.url;
 const inputTitle = newCardForm.title;
 
@@ -58,10 +58,6 @@ function closeModal(modal) {
 function openModal(modal) {
   modal.classList.add("modal_open");
   document.addEventListener("keydown", closeByEscape);
-}
-
-function disableSubmitButton() {
-  submitButton.disabled = true;
 }
 
 function closeByEscape(evt) {
@@ -168,6 +164,6 @@ newCardForm.addEventListener("submit", (e) => {
   const data = { url: inputLink.value, title: inputTitle.value };
   renderCard(data);
   newCardForm.reset();
-  submitButton.disabled = true;
+  cardSubmitButton.disabled = true;
   closeModal(addCardModal);
 });
