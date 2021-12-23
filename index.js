@@ -58,7 +58,6 @@ function closeModal(modal) {
 function openModal(modal) {
   modal.classList.add("modal_open");
   document.addEventListener("keydown", closeByEscape);
-  disableSubmitButton();
 }
 
 function disableSubmitButton() {
