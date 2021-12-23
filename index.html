@@ -59,6 +59,7 @@
             id="name"
             minlength="2"
             maxlength="40"
+            required
           />
           <span class="modal__error-text" id="name-error"
             >Please fill out this field.</span
@@ -70,11 +71,14 @@
             id="description"
             minlength="2"
             maxlength="200"
+            required
           />
           <span class="modal__error-text" id="description-error"
             >Please fill out this field.</span
           >
-          <button type="submit" class="modal__submit-button">Save</button>
+          <button disabled type="submit" class="modal__submit-button">
+            Save
+          </button>
         </form>
       </div>
     </div>
