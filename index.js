@@ -1,3 +1,5 @@
+import { FormValidator } from "./FormValidator.js";
+
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseButton =
   editProfileModal.querySelector("#edit-close-button");
@@ -22,6 +24,22 @@ const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
 const cardTemplate = document.querySelector("#element-template");
 const cardList = document.querySelector(".elements");
+
+const validationConfig = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  errorTextSelector: ".modal__error-text",
+  submitButtonSelector: ".modal__submit-button",
+  inactiveButtonClass: "modal__submit-button_disabled",
+  inputWithError: "modal__input_has-error",
+  errorTextVisible: "modal__error-text_visible",
+};
+
+const editProfileValidator = new FormValidator(
+  validationConfig,
+  document.querySelector("#edit-profile-modal")
+);
+editProfileValidator.enableValidation();
 
 const initialCards = [
   {
@@ -66,10 +84,6 @@ function closeByEscape(evt) {
     closeModal(openedModal);
   }
 }
-
-/*editProfileCloseButton.addEventListener("click", () => {
-  closeModal(modal);
-});*/
 
 openProfileModalButton.addEventListener("click", () => {
   openModal(editProfileModal);

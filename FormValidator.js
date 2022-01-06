@@ -1,4 +1,82 @@
-enableValidation({
+export class FormValidator {
+  constructor(config, formElement) {
+    this._config = config;
+    this._formElement = formElement;
+  }
+
+  enableValidation() {
+    this.setEventListeners(this._config, this._formElement);
+  }
+
+  setEventListeners() {
+    const inputs = Array.from(
+      this._formElement.querySelectorAll(this._config.inputSelector)
+    );
+    const buttonElement = this._formElement.querySelector(
+      this._config.submitButtonSelector
+    );
+    this.toggleButtonState(inputs, buttonElement, this._config);
+    inputs.forEach((input) => {
+      input.addEventListener("input", () => {
+        this.checkInputValidity(input, this._formElement, this._config);
+        this.toggleButtonState(inputs, buttonElement, this._config);
+      });
+    });
+  }
+
+  toggleButtonState(inputs, buttonElement) {
+    if (this.hasInvalidInput(inputs)) {
+      buttonElement.classList.add(this._config.inactiveButtonClass);
+      buttonElement.disabled = true;
+    } else {
+      buttonElement.classList.remove(this._config.inactiveButtonClass);
+      buttonElement.disabled = false;
+    }
+  }
+
+  checkInputValidity(input) {
+    if (input.validity.valid) {
+      this.removeErrorStyles(input, this._config);
+      this.removeErrorMessage(input, this._formElement, this._config);
+    } else {
+      this.addErrorStyles(input, this._config);
+      this.addErrorMessage(input, this._formElement, this._config);
+    }
+  }
+
+  hasInvalidInput(inputs) {
+    return inputs.some((input) => {
+      return !input.validity.valid;
+    });
+  }
+
+  addErrorMessage(input) {
+    const formError = this._formElement.querySelector(`#${input.id}-error`);
+    //Replace the content of the error
+    input.validationMessage;
+    formError.textContent = input.validationMessage;
+    formError.classList.add(this._config.errorTextVisible);
+  }
+
+  removeErrorMessage(input) {
+    const formError = this._formElement.querySelector(`#${input.id}-error`);
+    formError.classList.remove(this._config.errorTextVisible);
+    //Reset the error
+    formError.textContent = " ";
+  }
+
+  removeErrorStyles(input) {
+    input.classList.remove(this._config.inputWithError);
+  }
+
+  addErrorStyles(input) {
+    input.classList.add(this._config.inputWithError);
+  }
+}
+
+//enableValidation(validationConfig);
+
+/* enableValidation({
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   errorTextSelector: ".modal__error-text",
@@ -74,4 +152,4 @@ function removeErrorStyles(input, settings) {
 
 function addErrorStyles(input, settings) {
   input.classList.add(settings.inputWithError);
-}
+} */
