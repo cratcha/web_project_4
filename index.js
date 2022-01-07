@@ -1,4 +1,5 @@
 import { FormValidator } from "./FormValidator.js";
+import { Card } from "./card.js";
 
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseButton =
@@ -41,6 +42,9 @@ const editProfileValidator = new FormValidator(
 );
 editProfileValidator.enableValidation();
 
+const addCardValidator = new FormValidator(validationConfig, addCardModal);
+addCardValidator.enableValidation();
+
 const initialCards = [
   {
     title: "Yosemite Valley",
@@ -67,6 +71,9 @@ const initialCards = [
     url: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
+
+//const card = new Card(cardTemplate, data);
+//card.createCard();
 
 function closeModal(modal) {
   modal.classList.remove("modal_open");
@@ -117,7 +124,7 @@ editProfileForm.addEventListener("submit", (e) => {
   closeModal(editProfileModal);
 });
 
-function createCard(data) {
+/*function createCard(data) {
   const card = cardTemplate.content.querySelector(".element").cloneNode(true);
   const imageElement = card.querySelector(".element__photo");
   const titleElement = card.querySelector(".element__title");
@@ -148,14 +155,15 @@ function createCard(data) {
   });
 
   return card;
-}
+}*/
 
 function addCardToPage(element) {
   cardList.prepend(element);
 }
 
 function renderCard(data) {
-  addCardToPage(createCard(data));
+  const card = new Card(cardTemplate, data);
+  addCardToPage(card.createCard());
 }
 
 initialCards.forEach((cardData) => {
@@ -181,3 +189,5 @@ newCardForm.addEventListener("submit", (e) => {
   cardSubmitButton.disabled = true;
   closeModal(addCardModal);
 });
+
+export { closeModal, openModal, closeByEscape, imageModal };
