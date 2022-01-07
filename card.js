@@ -1,4 +1,5 @@
-import { openModal, imageModal } from "./index.js";
+import { imageModal } from "./index.js";
+import { openModal } from "./utils.js";
 export class Card {
   constructor(template, data) {
     this._template = template;

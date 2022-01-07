@@ -1,15 +1,16 @@
 import { FormValidator } from "./FormValidator.js";
+import { closeModal, openModal } from "./utils.js";
 import { Card } from "./card.js";
 
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileCloseButton =
-  editProfileModal.querySelector("#edit-close-button");
+//const editProfileCloseButton =
+editProfileModal.querySelector("#edit-close-button");
 const openProfileModalButton = document.querySelector("#open-modal-button");
 
 const editProfileForm = document.forms["edit-profile-form"];
 const nameInput = editProfileForm.name;
 const descriptionInput = editProfileForm.description;
-const editProfileSubmit = editProfileForm.querySelector("button[type=submit]");
+//const editProfileSubmit = editProfileForm.querySelector("button[type=submit]");
 
 const profileName = document.querySelector("#profile-name");
 const profileDescription = document.querySelector("#profile-description");
@@ -75,23 +76,6 @@ const initialCards = [
 //const card = new Card(cardTemplate, data);
 //card.createCard();
 
-function closeModal(modal) {
-  modal.classList.remove("modal_open");
-  document.removeEventListener("keydown", closeByEscape);
-}
-
-function openModal(modal) {
-  modal.classList.add("modal_open");
-  document.addEventListener("keydown", closeByEscape);
-}
-
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedModal = document.querySelector(".modal_open");
-    closeModal(openedModal);
-  }
-}
-
 openProfileModalButton.addEventListener("click", () => {
   openModal(editProfileModal);
   nameInput.value = profileName.innerText;
@@ -123,39 +107,6 @@ editProfileForm.addEventListener("submit", (e) => {
   profileDescription.textContent = descriptionInput.value;
   closeModal(editProfileModal);
 });
-
-/*function createCard(data) {
-  const card = cardTemplate.content.querySelector(".element").cloneNode(true);
-  const imageElement = card.querySelector(".element__photo");
-  const titleElement = card.querySelector(".element__title");
-
-  const trashButton = card.querySelector(".element__trash");
-  const likeButton = card.querySelector(".element__like-button");
-
-  imageElement.src = data.url;
-  titleElement.textContent = data.title;
-  imageElement.alt = data.title;
-
-  imageElement.addEventListener("click", () => {
-    const modalImageElement = imageModal.querySelector(".modal__image");
-    const modalCaption = imageModal.querySelector(".modal__caption");
-    modalImageElement.src = data.url;
-    modalCaption.textContent = data.title;
-    modalImageElement.alt = data.title;
-    openModal(imageModal);
-  });
-
-  trashButton.addEventListener("click", () => {
-    const cardToDelete = trashButton.closest(".element");
-    cardToDelete.remove();
-  });
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("element__like-button_activated");
-  });
-
-  return card;
-}*/
 
 function addCardToPage(element) {
   cardList.prepend(element);
@@ -190,4 +141,37 @@ newCardForm.addEventListener("submit", (e) => {
   closeModal(addCardModal);
 });
 
-export { closeModal, openModal, closeByEscape, imageModal };
+export { imageModal };
+
+/*function createCard(data) {
+  const card = cardTemplate.content.querySelector(".element").cloneNode(true);
+  const imageElement = card.querySelector(".element__photo");
+  const titleElement = card.querySelector(".element__title");
+
+  const trashButton = card.querySelector(".element__trash");
+  const likeButton = card.querySelector(".element__like-button");
+
+  imageElement.src = data.url;
+  titleElement.textContent = data.title;
+  imageElement.alt = data.title;
+
+  imageElement.addEventListener("click", () => {
+    const modalImageElement = imageModal.querySelector(".modal__image");
+    const modalCaption = imageModal.querySelector(".modal__caption");
+    modalImageElement.src = data.url;
+    modalCaption.textContent = data.title;
+    modalImageElement.alt = data.title;
+    openModal(imageModal);
+  });
+
+  trashButton.addEventListener("click", () => {
+    const cardToDelete = trashButton.closest(".element");
+    cardToDelete.remove();
+  });
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("element__like-button_activated");
+  });
+
+  return card;
+}*/
