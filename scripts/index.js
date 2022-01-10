@@ -1,6 +1,6 @@
 import { FormValidator } from "./FormValidator.js";
 import { closeModal, openModal } from "./utils.js";
-import { Card } from "./card.js";
+import { Card } from "./Card.js";
 
 const editProfileModal = document.querySelector("#edit-profile-modal");
 //const editProfileCloseButton =
@@ -18,9 +18,12 @@ const profileDescription = document.querySelector("#profile-description");
 const modalCloseButtons = document.querySelectorAll(".modal__close-button");
 const imageModal = document.querySelector("#image-modal");
 const newCardForm = document.querySelector("#add-card-form");
-const cardSubmitButton = newCardForm.querySelector(".modal__submit-button");
+//const cardSubmitButton = newCardForm.querySelector(".modal__submit-button");
 const inputLink = newCardForm.url;
 const inputTitle = newCardForm.title;
+
+const modalImageElement = imageModal.querySelector(".modal__image");
+const modalCaption = imageModal.querySelector(".modal__caption");
 
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
@@ -137,41 +140,7 @@ newCardForm.addEventListener("submit", (e) => {
   const data = { url: inputLink.value, title: inputTitle.value };
   renderCard(data);
   newCardForm.reset();
-  cardSubmitButton.disabled = true;
   closeModal(addCardModal);
 });
 
-export { imageModal };
-
-/*function createCard(data) {
-  const card = cardTemplate.content.querySelector(".element").cloneNode(true);
-  const imageElement = card.querySelector(".element__photo");
-  const titleElement = card.querySelector(".element__title");
-
-  const trashButton = card.querySelector(".element__trash");
-  const likeButton = card.querySelector(".element__like-button");
-
-  imageElement.src = data.url;
-  titleElement.textContent = data.title;
-  imageElement.alt = data.title;
-
-  imageElement.addEventListener("click", () => {
-    const modalImageElement = imageModal.querySelector(".modal__image");
-    const modalCaption = imageModal.querySelector(".modal__caption");
-    modalImageElement.src = data.url;
-    modalCaption.textContent = data.title;
-    modalImageElement.alt = data.title;
-    openModal(imageModal);
-  });
-
-  trashButton.addEventListener("click", () => {
-    const cardToDelete = trashButton.closest(".element");
-    cardToDelete.remove();
-  });
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("element__like-button_activated");
-  });
-
-  return card;
-}*/
+export { imageModal, modalCaption, modalImageElement };
