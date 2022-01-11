@@ -45,11 +45,9 @@ const editProfileValidator = new FormValidator(
   document.querySelector("#edit-profile-modal")
 );
 editProfileValidator.enableValidation();
-//editProfileValidator.resetValidation();
 
 const addCardValidator = new FormValidator(validationConfig, addCardModal);
 addCardValidator.enableValidation();
-//addCardValidator.resetValidation();
 
 const initialCards = [
   {
@@ -143,6 +141,8 @@ newCardForm.addEventListener("submit", (e) => {
   renderCard(data);
   newCardForm.reset();
   closeModal(addCardModal);
+  const validation = new FormValidator(validationConfig, newCardForm);
+  validation.enableValidation();
 });
 
 export { imageModal, modalCaption, modalImageElement };

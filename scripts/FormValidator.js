@@ -17,12 +17,6 @@ export class FormValidator {
       this._config.submitButtonSelector
     );
 
-    /*this._formElement.addEventListener("reset", () => {
-      this._disableButton(buttonElement);
-      inputs.forEach((input) => {
-        this._removeErrorMessage(input);
-      });
-    });*/
     this._toggleButtonState();
     this._inputs.forEach((input) => {
       input.addEventListener("input", () => {
@@ -31,18 +25,6 @@ export class FormValidator {
       });
     });
   }
-
-  /*_disabledButton() {
-    this._buttonElement.disabled = true;
-  }
-
-  resetValidation() {
-    this._toggleButtonState();
-    this._inputs.forEach((input) => {
-      this._checkInputValidity(input);
-      this._toggleButtonState();
-    });
-  }*/
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
