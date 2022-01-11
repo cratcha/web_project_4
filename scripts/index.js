@@ -45,9 +45,11 @@ const editProfileValidator = new FormValidator(
   document.querySelector("#edit-profile-modal")
 );
 editProfileValidator.enableValidation();
+//editProfileValidator.resetValidation();
 
 const addCardValidator = new FormValidator(validationConfig, addCardModal);
 addCardValidator.enableValidation();
+//addCardValidator.resetValidation();
 
 const initialCards = [
   {

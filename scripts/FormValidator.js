@@ -9,28 +9,48 @@ export class FormValidator {
   }
 
   setEventListeners() {
-    const inputs = Array.from(
+    this._inputs = Array.from(
       this._formElement.querySelectorAll(this._config.inputSelector)
     );
-    const buttonElement = this._formElement.querySelector(
+
+    this._buttonElement = this._formElement.querySelector(
       this._config.submitButtonSelector
     );
-    this._toggleButtonState(inputs, buttonElement);
-    inputs.forEach((input) => {
+
+    /*this._formElement.addEventListener("reset", () => {
+      this._disableButton(buttonElement);
+      inputs.forEach((input) => {
+        this._removeErrorMessage(input);
+      });
+    });*/
+    this._toggleButtonState();
+    this._inputs.forEach((input) => {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
-        this._toggleButtonState(inputs, buttonElement);
+        this._toggleButtonState();
       });
     });
   }
 
-  _toggleButtonState(inputs, buttonElement) {
-    if (this._hasInvalidInput(inputs)) {
-      buttonElement.classList.add(this._config.inactiveButtonClass);
-      buttonElement.disabled = true;
+  /*_disabledButton() {
+    this._buttonElement.disabled = true;
+  }
+
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputs.forEach((input) => {
+      this._checkInputValidity(input);
+      this._toggleButtonState();
+    });
+  }*/
+
+  _toggleButtonState() {
+    if (this._hasInvalidInput()) {
+      this._buttonElement.classList.add(this._config.inactiveButtonClass);
+      this._buttonElement.disabled = true;
     } else {
-      buttonElement.classList.remove(this._config.inactiveButtonClass);
-      buttonElement.disabled = false;
+      this._buttonElement.classList.remove(this._config.inactiveButtonClass);
+      this._buttonElement.disabled = false;
     }
   }
 
@@ -44,8 +64,8 @@ export class FormValidator {
     }
   }
 
-  _hasInvalidInput(inputs) {
-    return inputs.some((input) => {
+  _hasInvalidInput() {
+    return this._inputs.some((input) => {
       return !input.validity.valid;
     });
   }
