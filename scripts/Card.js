@@ -12,11 +12,15 @@ export class Card {
       .querySelector(".element")
       .cloneNode(true);
 
-    const titleElement = this._card.querySelector(".element__title");
-    const imageElement = this._card.querySelector(".element__photo");
-    imageElement.src = this._data.url;
-    imageElement.alt = this._data.title;
-    titleElement.textContent = this._data.title;
+    this._titleElement = this._card.querySelector(".element__title");
+
+    this._trashButton = this._card.querySelector(".element__trash");
+
+    this._likeButton = this._card.querySelector(".element__like-button");
+    this._imageElement = this._card.querySelector(".element__photo");
+    this._imageElement.src = this._data.url;
+    this._imageElement.alt = this._data.title;
+    this._titleElement.textContent = this._data.title;
 
     this._setEventListeners();
 
@@ -24,16 +28,14 @@ export class Card {
   }
 
   _setEventListeners() {
-    const imageElement = this._card.querySelector(".element__photo");
-    imageElement.addEventListener("click", (evt) => {
+    this._imageElement.addEventListener("click", (evt) => {
       this._handlePreviewPicture();
     });
 
-    this._likeButton = this._card.querySelector(".element__like-button");
     this._likeButton.addEventListener("click", (evt) => {
       this._handleLikeClick();
     });
-    this._trashButton = this._card.querySelector(".element__trash");
+
     this._trashButton.addEventListener("click", (evt) => {
       this._handleTrashButtonClick();
     });
@@ -51,7 +53,7 @@ export class Card {
   }
 
   _handleTrashButtonClick() {
-    const cardToDelete = this._trashButton.closest(".element");
-    cardToDelete.remove();
+    this._cardToDelete = this._trashButton.closest(".element");
+    this._cardToDelete.remove();
   }
 }
