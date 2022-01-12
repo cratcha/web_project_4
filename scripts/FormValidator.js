@@ -5,10 +5,10 @@ export class FormValidator {
   }
 
   enableValidation() {
-    this._setEventListeners();
+    this.setEventListeners();
   }
 
-  _setEventListeners() {
+  setEventListeners() {
     this._inputs = Array.from(
       this._formElement.querySelectorAll(this._config.inputSelector)
     );
@@ -17,10 +17,6 @@ export class FormValidator {
       this._config.submitButtonSelector
     );
 
-    this._resetValidation();
-  }
-
-  _resetValidation() {
     this._toggleButtonState();
     this._inputs.forEach((input) => {
       input.addEventListener("input", () => {
@@ -30,10 +26,14 @@ export class FormValidator {
     });
   }
 
+  disableSubmitButton() {
+    this._buttonElement.disabled = true;
+  }
+
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._config.inactiveButtonClass);
-      this._buttonElement.disabled = true;
+      this.disableSubmitButton();
     } else {
       this._buttonElement.classList.remove(this._config.inactiveButtonClass);
       this._buttonElement.disabled = false;
