@@ -5,10 +5,10 @@ export class FormValidator {
   }
 
   enableValidation() {
-    this.setEventListeners();
+    this._setEventListeners();
   }
 
-  setEventListeners() {
+  _setEventListeners() {
     this._inputs = Array.from(
       this._formElement.querySelectorAll(this._config.inputSelector)
     );
@@ -17,6 +17,10 @@ export class FormValidator {
       this._config.submitButtonSelector
     );
 
+    this._resetValidation();
+  }
+
+  _resetValidation() {
     this._toggleButtonState();
     this._inputs.forEach((input) => {
       input.addEventListener("input", () => {
@@ -39,10 +43,10 @@ export class FormValidator {
   _checkInputValidity(input) {
     if (input.validity.valid) {
       this._removeErrorStyles(input, this._config);
-      this._removeErrorMessage(input, this._formElement, this._config);
+      this._removeErrorMessage(input);
     } else {
       this._addErrorStyles(input, this._config);
-      this._addErrorMessage(input, this._formElement, this._config);
+      this._addErrorMessage(input);
     }
   }
 
@@ -75,5 +79,3 @@ export class FormValidator {
     input.classList.add(this._config.inputWithError);
   }
 }
-
-//enableValidation(validationConfig);

@@ -141,8 +141,8 @@ newCardForm.addEventListener("submit", (e) => {
   renderCard(data);
   newCardForm.reset();
   closeModal(addCardModal);
-  const validation = new FormValidator(validationConfig, newCardForm);
-  validation.enableValidation();
+  //addCardValidator._disableSubmitButton();
+  addCardValidator._resetValidation();
 });
 
 export { imageModal, modalCaption, modalImageElement };
