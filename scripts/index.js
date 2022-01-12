@@ -3,14 +3,11 @@ import { closeModal, openModal } from "./utils.js";
 import { Card } from "./Card.js";
 
 const editProfileModal = document.querySelector("#edit-profile-modal");
-//const editProfileCloseButton =
-editProfileModal.querySelector("#edit-close-button");
 const openProfileModalButton = document.querySelector("#open-modal-button");
 
 const editProfileForm = document.forms["edit-profile-form"];
 const nameInput = editProfileForm.name;
 const descriptionInput = editProfileForm.description;
-//const editProfileSubmit = editProfileForm.querySelector("button[type=submit]");
 
 const profileName = document.querySelector("#profile-name");
 const profileDescription = document.querySelector("#profile-description");
@@ -18,7 +15,7 @@ const profileDescription = document.querySelector("#profile-description");
 const modalCloseButtons = document.querySelectorAll(".modal__close-button");
 const imageModal = document.querySelector("#image-modal");
 const newCardForm = document.querySelector("#add-card-form");
-//const cardSubmitButton = newCardForm.querySelector(".modal__submit-button");
+
 const inputLink = newCardForm.url;
 const inputTitle = newCardForm.title;
 
@@ -75,9 +72,6 @@ const initialCards = [
     url: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
-
-//const card = new Card(cardTemplate, data);
-//card.createCard();
 
 openProfileModalButton.addEventListener("click", () => {
   openModal(editProfileModal);
@@ -141,7 +135,6 @@ newCardForm.addEventListener("submit", (e) => {
   renderCard(data);
   newCardForm.reset();
   closeModal(addCardModal);
-  //addCardValidator._disableSubmitButton();
   addCardValidator._resetValidation();
 });
 
