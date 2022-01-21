@@ -1,6 +1,7 @@
-import { FormValidator } from "./FormValidator.js";
+import { FormValidator } from "../components/FormValidator.js";
 import { closeModal, openModal } from "./utils.js";
-import { Card } from "./Card.js";
+import { Card } from "../components/Card.js";
+import { Section } from "../components/Section.js";
 
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const openProfileModalButton = document.querySelector("#open-modal-button");
@@ -105,18 +106,29 @@ editProfileForm.addEventListener("submit", (e) => {
   closeModal(editProfileModal);
 });
 
-function addCardToPage(element) {
+/*function addCardToPage(element) {
   cardList.prepend(element);
-}
+}*/
 
 function renderCard(data) {
   const card = new Card(cardTemplate, data);
-  addCardToPage(card.createCard());
+  //addCardToPage(card.createCard());
+  cardList.prepend(card.createCard());
 }
 
 initialCards.forEach((cardData) => {
   renderCard(cardData);
 });
+
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (data) => {
+      cardSection.addItem(renderCard(data));
+    },
+  },
+  validationConfig.formSelector
+);
 
 modalCloseButtons.forEach((modalCloseButton) => {
   modalCloseButton.addEventListener("click", (event) => {
