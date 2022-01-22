@@ -1,5 +1,5 @@
 import { FormValidator } from "../components/FormValidator.js";
-import { closeModal, openModal } from "./utils.js";
+//import { closeModal, openModal } from "./utils.js";
 import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
 
@@ -131,10 +131,10 @@ const cardSection = new Section(
 );
 
 modalCloseButtons.forEach((modalCloseButton) => {
-  modalCloseButton.addEventListener("click", (event) => {
+  /*modalCloseButton.addEventListener("click", (event) => {
     const modal = modalCloseButton.closest(".modal");
     closeModal(modal);
-  });
+  });*/
 });
 
 addCardButton.addEventListener("click", () => {

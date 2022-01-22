@@ -3,12 +3,14 @@ import {
   modalCaption,
   modalImageElement,
 } from "../scripts/index.js";
-import { openModal } from "../scripts/utils.js";
+import { Popup } from "./Popup.js";
+//import { openModal } from "../scripts/utils.js";
 
 export class Card {
   constructor(template, data) {
     this._template = template;
     this._data = data;
+    this.popup = new Popup();
   }
 
   createCard() {
@@ -49,7 +51,7 @@ export class Card {
     modalImageElement.src = this._data.url;
     modalCaption.textContent = this._data.title;
     modalImageElement.alt = this._data.title;
-    openModal(imageModal);
+    this.popup.openModal(imageModal);
   }
 
   _handleLikeClick() {
