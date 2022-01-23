@@ -1,16 +1,16 @@
-import {
+/*import {
   imageModal,
   modalCaption,
   modalImageElement,
-} from "../scripts/index.js";
-import { Popup } from "./Popup.js";
+} from "../scripts/index.js";*/
+//import Popup from "./Popup.js";
 //import { openModal } from "../scripts/utils.js";
 
 export class Card {
-  constructor(template, data) {
+  /*constructor(template, data) {
     this._template = template;
     this._data = data;
-    this.popup = new Popup();
+    this.popup = new Popup("image-modal");
   }
 
   createCard() {
@@ -32,34 +32,71 @@ export class Card {
 
     return this._card;
   }
-
-  _setEventListeners() {
-    this._imageElement.addEventListener("click", (evt) => {
-      this._handlePreviewPicture();
-    });
-
-    this._likeButton.addEventListener("click", (evt) => {
-      this._handleLikeClick();
-    });
-
-    this._trashButton.addEventListener("click", (evt) => {
-      this._handleTrashButtonClick();
-    });
+*/
+  constructor({ data, handlePictureClick }, cardSelector) {
+    this._text = data.title;
+    this._link = data.link;
+    this._handlePictureClick = handlePictureClick;
+    this._cardSelector = cardSelector;
   }
 
-  _handlePreviewPicture() {
-    modalImageElement.src = this._data.url;
+  _getTemplate() {
+    const card = document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".element")
+      .cloneNode(true);
+
+    return card;
+  }
+
+  _setEventListeners() {
+    this._element
+      .querySelector(".element__photo")
+      .addEventListener("click", () => {
+        this._handlePictureClick({
+          title: this._text,
+          src: this._link,
+        });
+      });
+
+    this._element
+      .querySelector(".element__like-button")
+      .addEventListener("click", (evt) => {
+        this._handleLikeClick();
+      });
+
+    this._element
+      .querySelector(".element__trash")
+      .addEventListener("click", (evt) => {
+        this._handleTrashButtonClick();
+      });
+  }
+
+  previewPicture() {
+    this._element = this._getTemplate();
+    this._setEventListeners();
+
+    this._element.querySelector(".element__photo").src = this._link;
+    this._element.querySelector(".element__title").textContent = this._text;
+    this._element.querySelector(".element__photo").alt = this._text;
+
+    return this._element;
+    /*modalImageElement.src = this._data.url;
     modalCaption.textContent = this._data.title;
     modalImageElement.alt = this._data.title;
-    this.popup.openModal(imageModal);
+    this.popup.openModal();*/
   }
 
   _handleLikeClick() {
-    this._likeButton.classList.toggle("element__like-button_activated");
+    this._element
+      .querySelector(".element__like-button")
+      .classList.toggle("element__like-button_activated");
   }
 
   _handleTrashButtonClick() {
-    this._cardToDelete = this._trashButton.closest(".element");
+    this._cardToDelete = this._element
+      .querySelector(".element__trash")
+      .closest(".element");
     this._cardToDelete.remove();
   }
 }
