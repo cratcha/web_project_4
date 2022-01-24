@@ -35,7 +35,7 @@ export class Card {
 */
   constructor({ data, handlePictureClick }, cardSelector) {
     this._text = data.title;
-    this._link = data.link;
+    this._link = data.url;
     this._handlePictureClick = handlePictureClick;
     this._cardSelector = cardSelector;
   }
@@ -52,24 +52,20 @@ export class Card {
   _setEventListeners() {
     this._element
       .querySelector(".element__photo")
-      .addEventListener("click", () => {
+      .addEventListener("click", () =>
         this._handlePictureClick({
           title: this._text,
-          src: this._link,
-        });
-      });
+          url: this._link,
+        })
+      );
 
     this._element
       .querySelector(".element__like-button")
-      .addEventListener("click", (evt) => {
-        this._handleLikeClick();
-      });
+      .addEventListener("click", () => this._handleLikeClick());
 
     this._element
       .querySelector(".element__trash")
-      .addEventListener("click", (evt) => {
-        this._handleTrashButtonClick();
-      });
+      .addEventListener("click", () => this._handleTrashButtonClick());
   }
 
   previewPicture() {

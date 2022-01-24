@@ -20,7 +20,7 @@ class Popup {
     });*/
     this._modal.addEventListener("mousedown", (evt) => {
       if (
-        evt.target.class.contains("modal") ||
+        evt.target.classList.contains("modal") ||
         evt.target.classList.contains("modal_close-button")
       ) {
         this.closeModal();

@@ -111,6 +111,9 @@ editProfileForm.addEventListener("submit", (e) => {
   cardList.prepend(element);
 }*/
 
+const imagePopup = new PopupWithImage("#image-modal");
+imagePopup.setEventListeners();
+
 //function renderCard(data) {
 const createCard = (data) => {
   const card = new Card(
@@ -127,9 +130,9 @@ const createCard = (data) => {
   //cardList.prepend(card._getTemplate());
 };
 
-initialCards.forEach((data) => {
+/*initialCards.forEach((data) => {
   createCard(data);
-});
+});*/
 
 const cardSection = new Section(
   {
@@ -141,9 +144,7 @@ const cardSection = new Section(
   ".elements"
 );
 
-const imagePopup = new PopupWithImage("#image-modal");
-
-imagePopup.setEventListeners();
+cardSection.renderItems();
 
 modalCloseButtons.forEach((modalCloseButton) => {
   /*modalCloseButton.addEventListener("click", (event) => {
