@@ -8,9 +8,9 @@ class PopupWithImage extends Popup {
   }
 
   openModal(data) {
-    this._imageElement.src = data.link;
-    this._imageElement.alt = `Image ${data.text}`;
-    this._imageCaption.textContent = data.text;
+    this._imageElement.src = data.url;
+    this._imageElement.alt = `Image ${data.title}`;
+    this._imageCaption.textContent = data.title;
     super.openModal();
   }
 }
