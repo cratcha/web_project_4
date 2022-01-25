@@ -3,6 +3,7 @@ import { FormValidator } from "../components/FormValidator.js";
 import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const openProfileModalButton = document.querySelector("#open-modal-button");
@@ -87,11 +88,11 @@ editProfileModal.addEventListener("mousedown", (e) => {
   }
 });
 
-addCardModal.addEventListener("mousedown", (e) => {
+/*addCardModal.addEventListener("mousedown", (e) => {
   if (e.target === addCardModal) {
     closeModal(addCardModal);
   }
-});
+});*/
 
 /*imageModal.addEventListener("mousedown", (e) => {
   if (e.target === imageModal) {
@@ -146,15 +147,24 @@ const cardSection = new Section(
 
 cardSection.renderItems();
 
-modalCloseButtons.forEach((modalCloseButton) => {
+const addCardPopup = new PopupWithForm({
+  popupSelector: "#add-card-modal",
+  handleFormSubmit: (data) => {
+    cardSection.addItem(createCard(data));
+  },
+});
+
+addCardPopup.setEventListeners();
+/*modalCloseButtons.forEach((modalCloseButton) => {
   /*modalCloseButton.addEventListener("click", (event) => {
     const modal = modalCloseButton.closest(".modal");
     closeModal(modal);
-  });*/
-});
+  });
+});*/
 
 addCardButton.addEventListener("click", () => {
-  openModal(addCardModal);
+  addCardPopup.openModal();
+  addCardValidator.enableValidation();
 });
 
 newCardForm.addEventListener("submit", (e) => {
