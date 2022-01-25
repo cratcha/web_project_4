@@ -120,7 +120,7 @@ const createCard = (data) => {
     {
       data,
       handlePictureClick: () => {
-        imagePopup.modalOpen(data);
+        imagePopup.openModal(data);
       },
     },
     "#element-template"

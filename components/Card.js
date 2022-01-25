@@ -54,8 +54,8 @@ export class Card {
       .querySelector(".element__photo")
       .addEventListener("click", () =>
         this._handlePictureClick({
-          title: this._text,
           url: this._link,
+          title: this._text,
         })
       );
 

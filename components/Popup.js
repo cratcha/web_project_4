@@ -21,7 +21,7 @@ class Popup {
     this._modal.addEventListener("mousedown", (evt) => {
       if (
         evt.target.classList.contains("modal") ||
-        evt.target.classList.contains("modal_close-button")
+        evt.target.classList.contains("modal__close-button")
       ) {
         this.closeModal();
       }
