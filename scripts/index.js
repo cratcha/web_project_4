@@ -4,6 +4,7 @@ import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const openProfileModalButton = document.querySelector("#open-modal-button");
@@ -12,8 +13,8 @@ const editProfileForm = document.forms["edit-profile-form"];
 const nameInput = editProfileForm.name;
 const descriptionInput = editProfileForm.description;
 
-const profileName = document.querySelector("#profile-name");
-const profileDescription = document.querySelector("#profile-description");
+//const profileName = document.querySelector("#profile-name");
+//const profileDescription = document.querySelector("#profile-description");
 
 const modalCloseButtons = document.querySelectorAll(".modal__close-button");
 const imageModal = document.querySelector("#image-modal");
@@ -76,46 +77,38 @@ const initialCards = [
   },
 ];
 
-openProfileModalButton.addEventListener("click", () => {
+/*openProfileModalButton.addEventListener("click", () => {
   openModal(editProfileModal);
   nameInput.value = profileName.innerText;
   descriptionInput.value = profileDescription.innerText;
+});*/
+const userInfo = new UserInfo({
+  profileNameSelector: "#profile-name",
+  profileDescriptionSelector: "#profile-description",
 });
 
-editProfileModal.addEventListener("mousedown", (e) => {
-  if (e.target === editProfileModal) {
-    closeModal(editProfileModal);
-  }
+const editProfilePopup = new PopupWithForm({
+  popupSelector: "#edit-profile-form",
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+  },
 });
 
-/*addCardModal.addEventListener("mousedown", (e) => {
-  if (e.target === addCardModal) {
-    closeModal(addCardModal);
-  }
-});*/
+openProfileModalButton.addEventListener("click", () => {
+  const currentUserInfo = userInfo.getUserInfo();
+  editProfilePopup.openModal(currentUserInfo);
+});
 
-/*imageModal.addEventListener("mousedown", (e) => {
-  if (e.target === imageModal) {
-    closeModal(imageModal);
-  }
-});*/
-
-editProfileForm.addEventListener("submit", (e) => {
+/*editProfileForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
   closeModal(editProfileModal);
-});
-
-/*function addCardToPage(element) {
-  cardList.prepend(element);
-}*/
+});*/
 
 const imagePopup = new PopupWithImage("#image-modal");
-imagePopup.setEventListeners();
 
-//function renderCard(data) {
 const createCard = (data) => {
   const card = new Card(
     {
@@ -127,13 +120,7 @@ const createCard = (data) => {
     "#element-template"
   );
   return card.previewPicture();
-  //addCardToPage(card.createCard());
-  //cardList.prepend(card._getTemplate());
 };
-
-/*initialCards.forEach((data) => {
-  createCard(data);
-});*/
 
 const cardSection = new Section(
   {
@@ -154,18 +141,14 @@ const addCardPopup = new PopupWithForm({
   },
 });
 
-addCardPopup.setEventListeners();
-/*modalCloseButtons.forEach((modalCloseButton) => {
-  /*modalCloseButton.addEventListener("click", (event) => {
-    const modal = modalCloseButton.closest(".modal");
-    closeModal(modal);
-  });
-});*/
-
 addCardButton.addEventListener("click", () => {
   addCardPopup.openModal();
   addCardValidator.enableValidation();
 });
+
+imagePopup.setEventListeners();
+editProfilePopup.setEventListeners();
+addCardPopup.setEventListeners();
 
 newCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -175,4 +158,3 @@ newCardForm.addEventListener("submit", (e) => {
   closeModal(addCardModal);
   addCardValidator.disableSubmitButton();
 });
-//export { imageModal, modalCaption, modalImageElement };
