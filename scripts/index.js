@@ -13,8 +13,8 @@ const editProfileForm = document.forms["edit-profile-form"];
 const nameInput = editProfileForm.name;
 const descriptionInput = editProfileForm.description;
 
-//const profileName = document.querySelector("#profile-name");
-//const profileDescription = document.querySelector("#profile-description");
+//profileName = document.querySelector("#profile-name");
+//profileDescription = document.querySelector("#profile-description");
 
 const modalCloseButtons = document.querySelectorAll(".modal__close-button");
 const imageModal = document.querySelector("#image-modal");
@@ -96,6 +96,8 @@ const editProfilePopup = new PopupWithForm({
 
 openProfileModalButton.addEventListener("click", () => {
   const currentUserInfo = userInfo.getUserInfo();
+  nameInput.value = currentUserInfo.profileName;
+  descriptionInput.value = currentUserInfo.profileDescription;
   editProfilePopup.openModal(currentUserInfo);
 });
 
