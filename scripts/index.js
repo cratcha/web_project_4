@@ -115,7 +115,7 @@ const createCard = (data) => {
   const card = new Card(
     {
       data,
-      handlePictureClick: () => {
+      handlePictureClick: (data) => {
         imagePopup.openModal(data);
       },
     },
