@@ -88,7 +88,7 @@ const userInfo = new UserInfo({
 });
 
 const editProfilePopup = new PopupWithForm({
-  popupSelector: "#edit-profile-form",
+  popupSelector: "#edit-profile-modal",
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
   },
