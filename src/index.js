@@ -1,12 +1,12 @@
-import { FormValidator } from "../components/FormValidator.js";
+import "./pages/index.css";
+import { FormValidator } from "../src/components/FormValidator.js";
 //import { closeModal, openModal } from "./utils.js";
-import { Card } from "../components/Card.js";
-import { Section } from "../components/Section.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import UserInfo from "../components/UserInfo.js";
-
-const editProfileModal = document.querySelector("#edit-profile-modal");
+import { Card } from "../src/components/Card.js";
+import { Section } from "../src/components/Section.js";
+import PopupWithImage from "../src/components/PopupWithImage.js";
+import PopupWithForm from "../src/components/PopupWithForm.js";
+import UserInfo from "../src/components/UserInfo";
+//const editProfileModal = document.querySelector("#edit-profile-modal");
 const openProfileModalButton = document.querySelector("#open-modal-button");
 
 const editProfileForm = document.forms["edit-profile-form"];
@@ -16,20 +16,20 @@ const descriptionInput = editProfileForm.description;
 //profileName = document.querySelector("#profile-name");
 //profileDescription = document.querySelector("#profile-description");
 
-const modalCloseButtons = document.querySelectorAll(".modal__close-button");
-const imageModal = document.querySelector("#image-modal");
+//const modalCloseButtons = document.querySelectorAll(".modal__close-button");
+//const imageModal = document.querySelector("#image-modal");
 const newCardForm = document.querySelector("#add-card-form");
 
-const inputLink = newCardForm.url;
-const inputTitle = newCardForm.title;
+//const inputLink = newCardForm.url;
+//const inputTitle = newCardForm.title;
 
 //const modalImageElement = imageModal.querySelector(".modal__image");
 //const modalCaption = imageModal.querySelector(".modal__caption");
 
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
-const cardTemplate = document.querySelector("#element-template");
-const cardList = document.querySelector(".elements");
+//const cardTemplate = document.querySelector("#element-template");
+//const cardList = document.querySelector(".elements");
 
 const validationConfig = {
   formSelector: ".modal__form",
@@ -152,11 +152,11 @@ imagePopup.setEventListeners();
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
 
-newCardForm.addEventListener("submit", (e) => {
+/*newCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const data = { url: inputLink.value, title: inputTitle.value };
   createCard(data);
   newCardForm.reset();
   closeModal(addCardModal);
   addCardValidator.disableSubmitButton();
-});
+});*/
