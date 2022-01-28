@@ -5,10 +5,10 @@ export class FormValidator {
   }
 
   enableValidation() {
-    this.setEventListeners();
+    this._setEventListeners();
   }
 
-  setEventListeners() {
+  _setEventListeners() {
     this._inputs = Array.from(
       this._formElement.querySelectorAll(this._config.inputSelector)
     );
@@ -17,23 +17,23 @@ export class FormValidator {
       this._config.submitButtonSelector
     );
 
-    this._toggleButtonState();
+    this.toggleButtonState();
     this._inputs.forEach((input) => {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }
 
-  disableSubmitButton() {
+  _disableSubmitButton() {
     this._buttonElement.disabled = true;
   }
 
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._config.inactiveButtonClass);
-      this.disableSubmitButton();
+      this._disableSubmitButton();
     } else {
       this._buttonElement.classList.remove(this._config.inactiveButtonClass);
       this._buttonElement.disabled = false;
@@ -59,7 +59,6 @@ export class FormValidator {
   _addErrorMessage(input) {
     const formError = this._formElement.querySelector(`#${input.id}-error`);
     //Replace the content of the error
-    input.validationMessage;
     formError.textContent = input.validationMessage;
     formError.classList.add(this._config.errorTextVisible);
   }
@@ -67,8 +66,6 @@ export class FormValidator {
   _removeErrorMessage(input) {
     const formError = this._formElement.querySelector(`#${input.id}-error`);
     formError.classList.remove(this._config.errorTextVisible);
-    //Reset the error
-    formError.textContent = " ";
   }
 
   _removeErrorStyles(input) {

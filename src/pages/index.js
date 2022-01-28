@@ -1,35 +1,21 @@
-import "./pages/index.css";
-import { FormValidator } from "../src/components/FormValidator.js";
-//import { closeModal, openModal } from "./utils.js";
-import { Card } from "../src/components/Card.js";
-import { Section } from "../src/components/Section.js";
-import PopupWithImage from "../src/components/PopupWithImage.js";
-import PopupWithForm from "../src/components/PopupWithForm.js";
-import UserInfo from "../src/components/UserInfo";
-//const editProfileModal = document.querySelector("#edit-profile-modal");
+import "./index.css";
+import { FormValidator } from "../components/FormValidator.js";
+import { Card } from "../components/Card.js";
+import { Section } from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo";
+
 const openProfileModalButton = document.querySelector("#open-modal-button");
 
 const editProfileForm = document.forms["edit-profile-form"];
 const nameInput = editProfileForm.name;
 const descriptionInput = editProfileForm.description;
 
-//profileName = document.querySelector("#profile-name");
-//profileDescription = document.querySelector("#profile-description");
-
-//const modalCloseButtons = document.querySelectorAll(".modal__close-button");
-//const imageModal = document.querySelector("#image-modal");
 const newCardForm = document.querySelector("#add-card-form");
-
-//const inputLink = newCardForm.url;
-//const inputTitle = newCardForm.title;
-
-//const modalImageElement = imageModal.querySelector(".modal__image");
-//const modalCaption = imageModal.querySelector(".modal__caption");
 
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
-//const cardTemplate = document.querySelector("#element-template");
-//const cardList = document.querySelector(".elements");
 
 const validationConfig = {
   formSelector: ".modal__form",
@@ -40,15 +26,6 @@ const validationConfig = {
   inputWithError: "modal__input_has-error",
   errorTextVisible: "modal__error-text_visible",
 };
-
-const editProfileValidator = new FormValidator(
-  validationConfig,
-  document.querySelector("#edit-profile-modal")
-);
-editProfileValidator.enableValidation();
-
-const addCardValidator = new FormValidator(validationConfig, addCardModal);
-addCardValidator.enableValidation();
 
 const initialCards = [
   {
@@ -77,11 +54,15 @@ const initialCards = [
   },
 ];
 
-/*openProfileModalButton.addEventListener("click", () => {
-  openModal(editProfileModal);
-  nameInput.value = profileName.innerText;
-  descriptionInput.value = profileDescription.innerText;
-});*/
+const editProfileValidator = new FormValidator(
+  validationConfig,
+  document.querySelector("#edit-profile-modal")
+);
+editProfileValidator.enableValidation();
+
+const addCardValidator = new FormValidator(validationConfig, addCardModal);
+addCardValidator.enableValidation();
+
 const userInfo = new UserInfo({
   profileNameSelector: "#profile-name",
   profileDescriptionSelector: "#profile-description",
@@ -100,14 +81,6 @@ openProfileModalButton.addEventListener("click", () => {
   descriptionInput.value = currentUserInfo.profileDescription;
   editProfilePopup.openModal(currentUserInfo);
 });
-
-/*editProfileForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = descriptionInput.value;
-  closeModal(editProfileModal);
-});*/
 
 const imagePopup = new PopupWithImage("#image-modal");
 
@@ -145,18 +118,9 @@ const addCardPopup = new PopupWithForm({
 
 addCardButton.addEventListener("click", () => {
   addCardPopup.openModal();
-  addCardValidator.enableValidation();
+  addCardValidator.toggleButtonState();
 });
 
 imagePopup.setEventListeners();
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
-
-/*newCardForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const data = { url: inputLink.value, title: inputTitle.value };
-  createCard(data);
-  newCardForm.reset();
-  closeModal(addCardModal);
-  addCardValidator.disableSubmitButton();
-});*/
