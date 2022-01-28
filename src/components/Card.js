@@ -52,9 +52,6 @@ export class Card {
   }
 
   _handleTrashButtonClick() {
-    this._cardToDelete = this._element
-      .querySelector(".element__trash")
-      .closest(".element");
-    this._cardToDelete.remove();
+    this._element.remove();
   }
 }
