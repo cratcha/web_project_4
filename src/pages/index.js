@@ -5,6 +5,7 @@ import { Section } from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo";
+import Api from "../components/Api.js";
 
 const openProfileModalButton = document.querySelector("#open-modal-button");
 
@@ -27,7 +28,7 @@ const validationConfig = {
   errorTextVisible: "modal__error-text_visible",
 };
 
-const initialCards = [
+/*const initialCards = [
   {
     title: "Yosemite Valley",
     url: "https://code.s3.yandex.net/web-code/yosemite.jpg",
@@ -52,7 +53,15 @@ const initialCards = [
     title: "Lago di Braies",
     url: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
-];
+];*/
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authorization: "4921d172-e47d-477d-bceb-cfdae220d52e",
+    "Content-Type": "application/json",
+  },
+});
 
 const editProfileValidator = new FormValidator(
   validationConfig,
@@ -99,15 +108,35 @@ const createCard = (data) => {
 
 const cardSection = new Section(
   {
-    items: initialCards,
+    items: null,
     renderer: (data) => {
       cardSection.addItem(createCard(data));
     },
   },
   ".elements"
 );
+let myInfo = null;
 
-cardSection.renderItems();
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([initialCards, userInfo]) => {
+    cardSection.items = initialCards;
+    myInfo = userInfo;
+    cardSection.renderItems();
+  })
+  .catch((err) => `Unable to load data: ${err}`);
+
+/*api
+  .getInitialCards()
+  .then((cardsArray) => {
+    cardsArray.forEach((data) => {
+      cardSection.addItem(createCard(data));
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });*/
+
+//cardSection.renderItems();
 
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
