@@ -39,7 +39,7 @@ export class Card {
 
     this._element
       .querySelector(".element__trash")
-      .addEventListener("click", () => this._handleTrashButtonClick(Card));
+      .addEventListener("click", () => this._handleTrashButtonClick(this));
   }
 
   previewPicture() {
