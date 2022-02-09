@@ -132,9 +132,9 @@ const createCard = (cardData) => {
         deletePopup.openModal();
         deletePopup.handleSubmitAction(() => {
           api
-            .deleteCard(card._id())
+            .deleteCard(card.id())
             .then(() => {
-              card.remove();
+              card.removeElement();
               deletePopup.closeModal();
             })
             .catch((err) => console.log(`Unable to delete a card: ${err}`));

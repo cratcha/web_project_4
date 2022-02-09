@@ -63,6 +63,9 @@ export class Card {
     return this._cardID;
   }
 
+  removeElement() {
+    this._element.remove();
+  }
   /*_handleTrashButtonClick() {
     this._element.remove();
   }*/
