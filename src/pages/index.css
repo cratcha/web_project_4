@@ -35,4 +35,5 @@
 @import url("../blocks/modal/__input/_has-error/modal__input_has-error.css");
 @import url("../blocks/modal/__caption/modal__caption.css");
 @import url("../blocks/modal/__image/modal__image.css");
-@import url("../blocks/modal/__content/_type/model__content_type_image.css");
+@import url("../blocks/modal/__content/_type/modal__content_type_image.css");
+@import url("../blocks/modal/__delete-button/modal__delete-button.css");

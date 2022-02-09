@@ -1,9 +1,15 @@
 export class Card {
-  constructor({ data, handlePictureClick }, cardSelector) {
+  constructor(
+    { data, handlePictureClick, handleTrashButtonClick },
+    cardSelector
+  ) {
     this._text = data.name;
     this._link = data.link;
+    this.cardID = data.id;
+
     this._handlePictureClick = handlePictureClick;
     this._cardSelector = cardSelector;
+    this._handleTrashButtonClick = handleTrashButtonClick;
   }
 
   _getTemplate() {
@@ -51,7 +57,11 @@ export class Card {
       .classList.toggle("element__like-button_activated");
   }
 
-  _handleTrashButtonClick() {
+  /*id() {
+    return this._cardID;
+  }*/
+
+  /* _handleTrashButtonClick() {
     this._element.remove();
-  }
+  }*/
 }

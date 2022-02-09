@@ -66,7 +66,7 @@
           >
           <input
             class="modal__input"
-            name="description"
+            name="about"
             placeholder="About me"
             id="description"
             minlength="2"
@@ -89,8 +89,8 @@
         <form class="modal__form" name="add-card" id="add-card-form">
           <input
             class="modal__input"
-            name="title"
-            placeholder="Title"
+            name="name"
+            placeholder="name"
             id="title"
             type="text"
             required
@@ -102,7 +102,7 @@
           >
           <input
             class="modal__input"
-            name="url"
+            name="link"
             placeholder="Image link"
             id="link"
             type="url"
@@ -122,6 +122,13 @@
         <button class="modal__close-button" type="button"></button>
         <img class="modal__image" src=" " alt=" " />
         <p class="modal__caption"></p>
+      </div>
+    </div>
+    <div class="modal modal_type_trash" id="delete-popup">
+      <div class="modal__content">
+        <button class="modal__close-button" type="button"></button>
+        <h2 class="modal__title">Are you sure?</h2>
+        <button type="button" class="modal__delete-button">Yes</button>
       </div>
     </div>
     <template id="element-template">

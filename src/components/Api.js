@@ -23,4 +23,33 @@ export default class Api {
       headers: this._headers,
     }).then(this._handleServerResponse);
   }
+
+  editUserInfo({ name, about }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        about,
+      }),
+    }).then(this._handleServerResponse);
+  }
+
+  addNewCard({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    }).then(this._handleServerResponse);
+  }
+
+  deleteCard(cardID) {
+    return fetch(`${this._baseUrl}/cards/${cardID}`, {
+      method: "DELETE",
+      _headers: this._headers,
+    }).then(this._handleServerResponse);
+  }
 }

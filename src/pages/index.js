@@ -6,6 +6,8 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo";
 import Api from "../components/Api.js";
+import { renderLoading } from "../utils/utils.js";
+import PopupWithDelete from "../components/PopupWithDelete";
 
 const openProfileModalButton = document.querySelector("#open-modal-button");
 
@@ -77,10 +79,34 @@ const userInfo = new UserInfo({
   profileDescriptionSelector: "#profile-description",
 });
 
-const editProfilePopup = new PopupWithForm({
+/*const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-profile-modal",
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
+  },
+});*/
+const editProfilePopup = new PopupWithForm({
+  popupSelector: "#edit-profile-modal",
+  handleFormSubmit: (data) => {
+    renderLoading("#edit-profile-modal", true);
+    api
+      .editUserInfo({
+        name: data.profileName,
+        about: data.profileDescription,
+      })
+      .then((info) => {
+        userInfo.setUserInfo({
+          profileName: info.name,
+          profileDescription: info.about,
+        });
+        editProfilePopup.closeModal();
+      })
+      .catch((err) =>
+        console.log(`Unable to update profile information: ${err}`)
+      )
+      .finally(() => {
+        renderLoading("#edit-profile-modal");
+      });
   },
 });
 
@@ -92,19 +118,42 @@ openProfileModalButton.addEventListener("click", () => {
 });
 
 const imagePopup = new PopupWithImage("#image-modal");
+const deletePopup = new PopupWithDelete("#delete-popup");
+deletePopup.setEventListeners();
 
-const createCard = (data) => {
+const createCard = (cardData) => {
   const card = new Card(
     {
-      data,
-      handlePictureClick: (data) => {
-        imagePopup.openModal(data);
+      data: { ...cardData },
+      handlePictureClick: (cardData) => {
+        imagePopup.openModal(cardData);
+      },
+      handleTrashButtonClick: (card) => {
+        deletePopup.openModal();
+        deletePopup.handleSubmitAction(() => {
+          api
+            .deleteCard(card.id())
+            .then(() => {
+              card.deleteCard();
+              deletePopup.closeModal();
+            })
+            .catch((err) => console.log(`Unable to delete a card: ${err}`));
+        });
       },
     },
     "#element-template"
   );
   return card.previewPicture();
 };
+
+api
+  .getAppInfo()
+  .then(([initialCards, userInfo]) => {
+    cardSection.items = initialCards;
+    myInfo = userInfo;
+    cardSection.renderItems();
+  })
+  .catch((err) => `Unable to load data: ${err}`);
 
 const cardSection = new Section(
   {
@@ -117,13 +166,7 @@ const cardSection = new Section(
 );
 let myInfo = null;
 
-Promise.all([api.getInitialCards(), api.getUserInfo()])
-  .then(([initialCards, userInfo]) => {
-    cardSection.items = initialCards;
-    myInfo = userInfo;
-    cardSection.renderItems();
-  })
-  .catch((err) => `Unable to load data: ${err}`);
+//Promise.all([api.getInitialCards(), api.getUserInfo()])
 
 /*api
   .getInitialCards()
@@ -141,7 +184,18 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (data) => {
-    cardSection.addItem(createCard(data));
+    renderLoading("#add-card-modal", true);
+
+    api
+      .addNewCard(data)
+      .then((cardData) => {
+        cardSection.addItem(createCard(cardData));
+        addCardPopup.closeModal();
+      })
+      .catch((err) => console.log(`Unable to add a card: ${err}`))
+      .finally(() => {
+        renderLoading("#add-card-modal");
+      });
   },
 });
 
