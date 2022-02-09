@@ -39,7 +39,7 @@ export class Card {
 
     this._element
       .querySelector(".element__trash")
-      .addEventListener("click", () => this._handleTrashButtonClick());
+      .addEventListener("click", () => this._handleTrashButtonClick(Card));
   }
 
   previewPicture() {
@@ -63,7 +63,7 @@ export class Card {
     return this._cardID;
   }
 
-  _handleTrashButtonClick() {
+  /*_handleTrashButtonClick() {
     this._element.remove();
-  }
+  }*/
 }

@@ -131,9 +131,8 @@ const createCard = (cardData) => {
       handleTrashButtonClick: (card) => {
         deletePopup.openModal();
         deletePopup.handleSubmitAction(() => {
-          debugger;
           api
-            .deleteCard(card._id)
+            .deleteCard(card._id())
             .then(() => {
               card.remove();
               deletePopup.closeModal();
