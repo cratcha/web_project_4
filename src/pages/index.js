@@ -131,10 +131,11 @@ const createCard = (cardData) => {
       handleTrashButtonClick: (card) => {
         deletePopup.openModal();
         deletePopup.handleSubmitAction(() => {
+          debugger;
           api
-            .deleteCard(card.id())
+            .deleteCard(card._id)
             .then(() => {
-              card.deleteCard();
+              card.remove();
               deletePopup.closeModal();
             })
             .catch((err) => console.log(`Unable to delete a card: ${err}`));
@@ -145,6 +146,22 @@ const createCard = (cardData) => {
   );
   return card.previewPicture();
 };
+
+/*const modalDelete = new PopupWithDelete(
+  {
+    handleSubmitAction: (evt) => {
+      evt.preventDefault();
+      api
+        .deleteCard(modalDelete.id)
+        .then(modalDelete.card.remove())
+        .then(modalDelete.closeModal())
+        .catch((err) => {
+          `Unableto remove card: ${err}`;
+        });
+    },
+  },
+  ".modal_type_trash"
+);*/
 
 api
   .getAppInfo()

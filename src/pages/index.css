@@ -19,6 +19,7 @@
 @import url("../blocks/element/__like-button/element__like-button.css");
 @import url("../blocks/element/__like-button_activated/element__llike-button_activated.css");
 @import url("../blocks/element/__trash/element__trash.css");
+@import url("../blocks/element/__like-button/__counter/element__like-button__counter.css");
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
 @import url("../blocks/modal/modal.css");

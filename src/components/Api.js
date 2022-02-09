@@ -49,7 +49,20 @@ export default class Api {
   deleteCard(cardID) {
     return fetch(`${this._baseUrl}/cards/${cardID}`, {
       method: "DELETE",
-      _headers: this._headers,
+      headers: this._headers,
+    }).then(this._handleServerResponse);
+  }
+
+  likeCard(cardID) {
+    return fetch(`${this._baseUrl}/cards/like/${cardID}`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._handleServerResponse);
+  }
+  unlikeCard(cardID) {
+    return fetch(`${this._baseUrl}/cards/like/${cardID}`, {
+      method: "DELETE",
+      headers: this._headers,
     }).then(this._handleServerResponse);
   }
 }

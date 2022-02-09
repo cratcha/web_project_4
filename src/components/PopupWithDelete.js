@@ -5,10 +5,30 @@ export default class PopupWithDelete extends Popup {
   }
 
   setEventListeners() {
-    this._modal.addEventListener("submit", (evt) => {
+    this._modal.addEventListener("click", (evt) => {
       evt.preventDefault();
       this._handleSubmitAction();
     });
     super.setEventListeners();
   }
 }
+
+/*export default class PopupWithDelete extends Popup {
+  constructor({ handleSubmitAction }, popupSelector) {
+    super(popupSelector);
+    this._handleSubmitAction = handleSubmitAction;
+  }
+  openModal(card, id) {
+    this.card = card;
+    this.id = id;
+    super.openModal();
+  }
+
+  setEventListeners() {
+    this._modal.addEventListener("submit", (evt) => {
+      //evt.preventDefault();
+      this._handleSubmitAction();
+    });
+    super.setEventListeners();
+  }
+}*/

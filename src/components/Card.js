@@ -5,7 +5,9 @@ export class Card {
   ) {
     this._text = data.name;
     this._link = data.link;
-    this.cardID = data.id;
+    this._cardID = data._id;
+    this._userID = data.currentUserID;
+    this._ownerID = data.owner._id;
 
     this._handlePictureClick = handlePictureClick;
     this._cardSelector = cardSelector;
@@ -57,11 +59,11 @@ export class Card {
       .classList.toggle("element__like-button_activated");
   }
 
-  /*id() {
+  id() {
     return this._cardID;
-  }*/
+  }
 
-  /* _handleTrashButtonClick() {
+  _handleTrashButtonClick() {
     this._element.remove();
-  }*/
+  }
 }
