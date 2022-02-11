@@ -53,7 +53,13 @@ export default class Api {
     }).then(this._handleServerResponse);
   }
 
-  likeCard(cardID) {
+  changeLikeStatus(cardID, like) {
+    return fetch(`${this._baseUrl}/cards/like/${cardID}`, {
+      method: like ? "PUT" : "DELETE",
+      headers: this._headers,
+    }).then(this._handleServerResponse);
+  }
+  /*likeCard(cardID) {
     return fetch(`${this._baseUrl}/cards/like/${cardID}`, {
       method: "PUT",
       headers: this._headers,
@@ -64,5 +70,5 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     }).then(this._handleServerResponse);
-  }
+  }*/
 }

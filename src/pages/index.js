@@ -121,12 +121,28 @@ const imagePopup = new PopupWithImage("#image-modal");
 const deletePopup = new PopupWithDelete("#delete-popup");
 deletePopup.setEventListeners();
 
+/*const handleAddLike = (cardID) => {
+  return api.likeCard(cardID);
+};
+
+const handleRemoveLike = (cardID) => {
+  return api.unlikeCard(cardID);
+};*/
+
 const createCard = (cardData) => {
   const card = new Card(
     {
       data: { ...cardData },
       handlePictureClick: (cardData) => {
         imagePopup.openModal(cardData);
+      },
+      handleLikeClick: (card) => {
+        api
+          .changeLikeStatus(card.id(), !card.isLiked())
+          .then((data) => {
+            card.setLikesInfo({ ...data });
+          })
+          .catch((err) => console.log(`Unable to change like status: ${err}`));
       },
       handleTrashButtonClick: (card) => {
         deletePopup.openModal();
