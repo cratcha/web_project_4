@@ -43,6 +43,32 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Ekaterina Cratcha</p>
     </footer>
+    <div class="modal modal_type_avatar">
+      <div class="modal_content">
+        <button
+          class="modal__close-button"
+          id="avatar-close-button"
+          type="button"
+        ></button>
+        <h2 class="modal__title">Change profile picture</h2>
+        <form class="modal__form" name="modal-form" id="change-profile-form">
+          <input
+          class="modal__input"
+          name="link"
+          placeholder="Image link"
+          id="avatar"
+          type="url"
+          required
+        />
+        <span class="modal__error-text" id="link-error"
+            >Please enter a web address</span
+          >
+          <button disabled type="submit" class="modal__submit-button">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
     <div class="modal" id="edit-profile-modal">
       <div class="modal__content">
         <button
@@ -50,7 +76,7 @@
           id="edit-close-button"
           type="button"
         ></button>
-        <h1 class="modal__title">Edit Profile</h1>
+        <h2 class="modal__title">Edit Profile</h1>
         <form class="modal__form" name="modal-form" id="edit-profile-form">
           <input
             class="modal__input"
@@ -85,7 +111,7 @@
     <div class="modal" id="add-card-modal">
       <div class="modal__content">
         <button class="modal__close-button" type="button"></button>
-        <h1 class="modal__title">New place</h1>
+        <h2 class="modal__title">New place</h1>
         <form class="modal__form" name="add-card" id="add-card-form">
           <input
             class="modal__input"

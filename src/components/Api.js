@@ -59,6 +59,14 @@ export default class Api {
       headers: this._headers,
     }).then(this._handleServerResponse);
   }
+
+  updateAvatar({ avatar }) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({ avatar }),
+    }).then(this._handleServerResponse);
+  }
   /*likeCard(cardID) {
     return fetch(`${this._baseUrl}/cards/like/${cardID}`, {
       method: "PUT",
