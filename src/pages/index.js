@@ -137,6 +137,7 @@ const createCard = (cardData) => {
         imagePopup.openModal(cardData);
       },
       handleLikeClick: (card) => {
+        debugger;
         api
           .changeLikeStatus(card.id(), !card.isLiked())
           .then((data) => {
