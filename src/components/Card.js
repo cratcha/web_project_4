@@ -8,7 +8,7 @@ export class Card {
     this._cardID = data._id;
     this._userId = data.currentUserId;
     this._ownerID = data.owner._id;
-    //this._likes = data.likes;
+    this._likes = data.likes;
 
     this._handlePictureClick = handlePictureClick;
     this._cardSelector = cardSelector;
@@ -79,10 +79,11 @@ export class Card {
 
   setLikesInfo(data) {
     this._likes = data.likes;
-    this._updatelikesView();
+    this.updatelikes();
   }
 
   isLiked() {
+    debugger;
     return Boolean(this._likes.find((item) => item._id === this._userId));
   }
 
