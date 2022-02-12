@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around the US</title>
-    <link rel="stylesheet" href="./pages/index.css" />
+   
   </head>
 
   <body class="page">
@@ -19,11 +19,14 @@
     <main>
       <section class="profile">
         <div class="profile__box">
+         <div class="profile__avatar">
           <img
             src="<%= require('./images/profile-picture.jpg')%>"
             alt="Profile photo"
-            class="profile__avatar"
+            class="profile__avatar-image"
           />
+          <button class="profile__avatar-button" id="edit-avatar-button" type="button"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__name" id="profile-name">Jacques Cousteau</h1>
             <p class="profile__occupation" id="profile-description">Explorer</p>
@@ -43,8 +46,8 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Ekaterina Cratcha</p>
     </footer>
-    <div class="modal modal_type_avatar">
-      <div class="modal_content">
+    <div class="modal modal_type_avatar" id="change-avatar-modal">
+      <div class="modal__content">
         <button
           class="modal__close-button"
           id="avatar-close-button"

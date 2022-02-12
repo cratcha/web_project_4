@@ -1,20 +1,28 @@
 class UserInfo {
-  constructor({ profileNameSelector, profileDescriptionSelector }) {
+  constructor({
+    profileNameSelector,
+    profileDescriptionSelector,
+    userAvatarSelector,
+  }) {
     this._profileNameEl = document.querySelector(profileNameSelector);
     this._profileDescriptionEl = document.querySelector(
       profileDescriptionSelector
     );
+    this._userAvatarEl = document.querySelector(userAvatarSelector);
   }
 
   getUserInfo() {
     return {
       profileName: this._profileNameEl.textContent,
       profileDescription: this._profileDescriptionEl.textContent,
+      //userAvatar: this._userAvatarEl.style.backgroundImage.slice(5, -2),
     };
   }
-  setUserInfo({ profileName, profileDescription }) {
-    this._profileNameEl.textContent = profileName;
-    this._profileDescriptionEl.textContent = profileDescription;
+  setUserInfo({ profileName, profileDescription, userAvatar }) {
+    if (profileName) this._profileNameEl.textContent = profileName;
+    if (profileDescription)
+      this._profileDescriptionEl.textContent = profileDescription;
+    if (userAvatar) this._userAvatarEl.src = userAvatar;
   }
 }
 

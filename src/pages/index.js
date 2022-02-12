@@ -15,7 +15,7 @@ const editProfileForm = document.forms["edit-profile-form"];
 const nameInput = editProfileForm.name;
 const descriptionInput = editProfileForm.description;
 
-const newCardForm = document.querySelector("#add-card-form");
+//const newCardForm = document.querySelector("#add-card-form");
 
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
@@ -29,33 +29,6 @@ const validationConfig = {
   inputWithError: "modal__input_has-error",
   errorTextVisible: "modal__error-text_visible",
 };
-
-/*const initialCards = [
-  {
-    title: "Yosemite Valley",
-    url: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    title: "Lake Louise",
-    url: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    title: "Bald Mountains",
-    url: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    title: "Latemar",
-    url: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    title: "Vanoise National Park",
-    url: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    title: "Lago di Braies",
-    url: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];*/
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -77,6 +50,7 @@ addCardValidator.enableValidation();
 const userInfo = new UserInfo({
   profileNameSelector: "#profile-name",
   profileDescriptionSelector: "#profile-description",
+  userAvatarSelector: ".profile__avatar-image",
 });
 
 /*const editProfilePopup = new PopupWithForm({
@@ -108,6 +82,38 @@ const editProfilePopup = new PopupWithForm({
         renderLoading("#edit-profile-modal");
       });
   },
+});
+
+const updateAvatarPopup = new PopupWithForm({
+  popupSelector: "#change-avatar-modal",
+  handleFormSubmit: (data) => {
+    renderLoading("#change-avatar-modal", true);
+    api
+      .updateAvatar({ avatar: data.avatar })
+      .then((info) => {
+        userInfo.setUserInfo({ userAvatar: info.avatar });
+        updateAvatarPopup.closeModal();
+      })
+      .catch((err) => console.log(`Unable change the user avatar: ${res}`))
+      .finally(() => {
+        renderLoading("#change-avatar-modal");
+      });
+  },
+});
+
+updateAvatarPopup.setEventListeners();
+
+const openAvatarModalButton = document.querySelector("#edit-avatar-button");
+
+const editAvatar = new FormValidator(
+  validationConfig,
+  document.querySelector("#change-avatar-modal")
+);
+editAvatar.enableValidation;
+
+openAvatarModalButton.addEventListener("click", () => {
+  updateAvatarPopup.openModal();
+  editAvatar.toggleButtonState();
 });
 
 openProfileModalButton.addEventListener("click", () => {
@@ -161,22 +167,6 @@ const createCard = (cardData) => {
   );
   return card.previewPicture();
 };
-
-/*const modalDelete = new PopupWithDelete(
-  {
-    handleSubmitAction: (evt) => {
-      evt.preventDefault();
-      api
-        .deleteCard(modalDelete.id)
-        .then(modalDelete.card.remove())
-        .then(modalDelete.closeModal())
-        .catch((err) => {
-          `Unableto remove card: ${err}`;
-        });
-    },
-  },
-  ".modal_type_trash"
-);*/
 
 api
   .getAppInfo()

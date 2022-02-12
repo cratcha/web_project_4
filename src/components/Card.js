@@ -23,7 +23,6 @@ export class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".element")
       .cloneNode(true);
-
     return card;
   }
 
@@ -83,7 +82,6 @@ export class Card {
   }
 
   isLiked() {
-    debugger;
     return Boolean(this._likes.find((item) => item._id === this._userId));
   }
 
