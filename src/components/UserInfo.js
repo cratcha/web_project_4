@@ -18,11 +18,16 @@ class UserInfo {
       //userAvatar: this._userAvatarEl.style.backgroundImage.slice(5, -2),
     };
   }
-  setUserInfo({ profileName, profileDescription, userAvatar }) {
+  setUserInfo({ profileName, profileDescription }) {
     if (profileName) this._profileNameEl.textContent = profileName;
     if (profileDescription)
       this._profileDescriptionEl.textContent = profileDescription;
-    if (userAvatar) this._userAvatarEl.src = userAvatar;
+  }
+
+  setAvatar({ userAvatar }) {
+    if (userAvatar) {
+      this._userAvatarEl.src = userAvatar;
+    }
   }
 }
 

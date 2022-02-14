@@ -14,8 +14,6 @@ export class Card {
     this._cardSelector = cardSelector;
     this._handleTrashButtonClick = handleTrashButtonClick;
     this._handleLikeClick = handleLikeClick;
-    //this._handleAddLike = handleAddLike;
-    //this._handleRemoveLike = handleRemoveLike;
   }
 
   _getTemplate() {
@@ -30,7 +28,7 @@ export class Card {
     this._element.querySelector(".element__like-button__counter").textContent =
       this._likes.length;
 
-    if (this.isliked())
+    if (this.checkIfLiked())
       this._element
         .querySelector(".element__like-button")
         .classList.add("element__like-button_activated");
@@ -81,11 +79,11 @@ export class Card {
     this.updatelikes();
   }
 
-  isLiked() {
+  checkIfLiked() {
     return Boolean(this._likes.find((item) => item._id === this._userId));
   }
 
-  id() {
+  getId() {
     return this._cardID;
   }
 

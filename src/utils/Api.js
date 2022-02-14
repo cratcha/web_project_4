@@ -54,7 +54,7 @@ export default class Api {
   }
 
   changeLikeStatus(cardID, like) {
-    return fetch(`${this._baseUrl}/cards/like/${cardID}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
       method: like ? "PUT" : "DELETE",
       headers: this._headers,
     }).then(this._handleServerResponse);
@@ -67,16 +67,4 @@ export default class Api {
       body: JSON.stringify({ avatar }),
     }).then(this._handleServerResponse);
   }
-  /*likeCard(cardID) {
-    return fetch(`${this._baseUrl}/cards/like/${cardID}`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then(this._handleServerResponse);
-  }
-  unlikeCard(cardID) {
-    return fetch(`${this._baseUrl}/cards/like/${cardID}`, {
-      method: "DELETE",
-      headers: this._headers,
-    }).then(this._handleServerResponse);
-  }*/
 }

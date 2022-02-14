@@ -5,7 +5,7 @@ import { Section } from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo";
-import Api from "../components/Api.js";
+import Api from "../utils/Api.js";
 import { renderLoading } from "../utils/utils.js";
 import PopupWithDelete from "../components/PopupWithDelete";
 
@@ -14,8 +14,6 @@ const openProfileModalButton = document.querySelector("#open-modal-button");
 const editProfileForm = document.forms["edit-profile-form"];
 const nameInput = editProfileForm.name;
 const descriptionInput = editProfileForm.description;
-
-//const newCardForm = document.querySelector("#add-card-form");
 
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#add-card-modal");
@@ -53,12 +51,6 @@ const userInfo = new UserInfo({
   userAvatarSelector: ".profile__avatar-image",
 });
 
-/*const editProfilePopup = new PopupWithForm({
-  popupSelector: "#edit-profile-modal",
-  handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
-  },
-});*/
 const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-profile-modal",
   handleFormSubmit: (data) => {
@@ -91,7 +83,7 @@ const updateAvatarPopup = new PopupWithForm({
     api
       .updateAvatar({ avatar: data.avatar })
       .then((info) => {
-        userInfo.setUserInfo({ userAvatar: info.avatar });
+        userInfo.setAvatar({ userAvatar: info.avatar });
         updateAvatarPopup.closeModal();
       })
       .catch((err) => console.log(`Unable change the user avatar: ${res}`))
@@ -127,14 +119,6 @@ const imagePopup = new PopupWithImage("#image-modal");
 const deletePopup = new PopupWithDelete("#delete-popup");
 deletePopup.setEventListeners();
 
-/*const handleAddLike = (cardID) => {
-  return api.likeCard(cardID);
-};
-
-const handleRemoveLike = (cardID) => {
-  return api.unlikeCard(cardID);
-};*/
-
 const createCard = (cardData) => {
   const card = new Card(
     {
@@ -144,7 +128,7 @@ const createCard = (cardData) => {
       },
       handleLikeClick: (card) => {
         api
-          .changeLikeStatus(card.id(), !card.isLiked())
+          .changeLikeStatus(card.getId(), !card.checkIfLiked())
           .then((data) => {
             card.setLikesInfo({ ...data });
           })
@@ -154,7 +138,7 @@ const createCard = (cardData) => {
         deletePopup.openModal();
         deletePopup.handleSubmitAction(() => {
           api
-            .deleteCard(card.id())
+            .deleteCard(card.getId())
             .then(() => {
               card.removeElement();
               deletePopup.closeModal();
@@ -187,21 +171,6 @@ const cardSection = new Section(
   ".elements"
 );
 let myInfo = null;
-
-//Promise.all([api.getInitialCards(), api.getUserInfo()])
-
-/*api
-  .getInitialCards()
-  .then((cardsArray) => {
-    cardsArray.forEach((data) => {
-      cardSection.addItem(createCard(data));
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-  });*/
-
-//cardSection.renderItems();
 
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
