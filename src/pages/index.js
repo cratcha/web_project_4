@@ -99,7 +99,7 @@ const openAvatarModalButton = document.querySelector("#edit-avatar-button");
 
 const editAvatar = new FormValidator(
   validationConfig,
-  document.querySelector("#change-avatar-modal")
+  document.querySelector("#change-profile-form")
 );
 editAvatar.enableValidation;
 

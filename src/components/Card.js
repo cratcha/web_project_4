@@ -24,6 +24,11 @@ export class Card {
     return card;
   }
 
+  setLikesInfo(data) {
+    this._likes = data.likes;
+    this.updateLikes();
+  }
+
   updateLikes() {
     this._element.querySelector(".element__like-button__counter").textContent =
       this._likes.length;
@@ -73,11 +78,6 @@ export class Card {
       .querySelector(".element__like-button")
       .classList.toggle("element__like-button_activated");
   }*/
-
-  setLikesInfo(data) {
-    this._likes = data.likes;
-    this.updatelikes();
-  }
 
   checkIfLiked() {
     return Boolean(this._likes.find((item) => item._id === this._userId));
