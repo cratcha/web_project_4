@@ -5,10 +5,12 @@ export default class PopupWithDelete extends Popup {
   }
 
   setEventListeners() {
-    this._modal.addEventListener("click", (evt) => {
-      evt.preventDefault();
-      this._handleSubmitAction();
-    });
+    this._modal
+      .querySelector(".modal__delete-button")
+      .addEventListener("click", (evt) => {
+        evt.preventDefault();
+        this._handleSubmitAction();
+      });
     super.setEventListeners();
   }
 }

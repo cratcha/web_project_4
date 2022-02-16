@@ -8,6 +8,7 @@ import UserInfo from "../components/UserInfo";
 import Api from "../utils/Api.js";
 import { renderLoading } from "../utils/utils.js";
 import PopupWithDelete from "../components/PopupWithDelete";
+import { validationConfig, elements, selectors } from "../utils/constants";
 
 const openProfileModalButton = document.querySelector("#open-modal-button");
 
@@ -16,17 +17,6 @@ const nameInput = editProfileForm.name;
 const descriptionInput = editProfileForm.description;
 
 const addCardButton = document.querySelector(".profile__add-button");
-const addCardModal = document.querySelector("#add-card-modal");
-
-const validationConfig = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  errorTextSelector: ".modal__error-text",
-  submitButtonSelector: ".modal__submit-button",
-  inactiveButtonClass: "modal__submit-button_disabled",
-  inputWithError: "modal__input_has-error",
-  errorTextVisible: "modal__error-text_visible",
-};
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -38,14 +28,17 @@ const api = new Api({
 
 const editProfileValidator = new FormValidator(
   validationConfig,
-  document.querySelector("#edit-profile-modal")
+  elements.editProfilePopup
 );
 editProfileValidator.enableValidation();
 
-const addCardValidator = new FormValidator(validationConfig, addCardModal);
+const addCardValidator = new FormValidator(
+  validationConfig,
+  elements.addCardModal
+);
 addCardValidator.enableValidation();
 
-const userInfo = new UserInfo({
+const userData = new UserInfo({
   profileNameSelector: "#profile-name",
   profileDescriptionSelector: "#profile-description",
   userAvatarSelector: ".profile__avatar-image",
@@ -61,7 +54,7 @@ const editProfilePopup = new PopupWithForm({
         about: data.profileDescription,
       })
       .then((info) => {
-        userInfo.setUserInfo({
+        userData.setUserInfo({
           profileName: info.name,
           profileDescription: info.about,
         });
@@ -83,7 +76,7 @@ const updateAvatarPopup = new PopupWithForm({
     api
       .updateAvatar({ avatar: data.avatar })
       .then((info) => {
-        userInfo.setAvatar({ userAvatar: info.avatar });
+        userData.setAvatar({ userAvatar: info.avatar });
         updateAvatarPopup.closeModal();
       })
       .catch((err) => console.log(`Unable change the user avatar: ${res}`))
@@ -105,14 +98,15 @@ editAvatar.enableValidation;
 
 openAvatarModalButton.addEventListener("click", () => {
   updateAvatarPopup.openModal();
-  editAvatar.toggleButtonState();
+  editAvatar.resetValidation();
+  //editAvatar.toggleButtonState();
 });
 
 openProfileModalButton.addEventListener("click", () => {
-  const currentUserInfo = userInfo.getUserInfo();
+  const currentUserInfo = userData.getUserInfo();
   nameInput.value = currentUserInfo.profileName;
   descriptionInput.value = currentUserInfo.profileDescription;
-  editProfilePopup.openModal(currentUserInfo);
+  editProfilePopup.openModal();
 });
 
 const imagePopup = new PopupWithImage("#image-modal");
@@ -123,6 +117,7 @@ const createCard = (cardData) => {
   const card = new Card(
     {
       data: { ...cardData },
+      currentUserId: userData,
       handlePictureClick: (cardData) => {
         imagePopup.openModal(cardData);
       },
@@ -149,14 +144,16 @@ const createCard = (cardData) => {
     },
     "#element-template"
   );
-  return card.previewPicture();
+  return card.generateCard();
 };
 
 api
   .getAppInfo()
   .then(([initialCards, userInfo]) => {
     cardSection.items = initialCards;
-    myInfo = userInfo;
+    //myInfo = userInfo;
+    userData.setUserInfo(userInfo);
+
     cardSection.renderItems();
   })
   .catch((err) => `Unable to load data: ${err}`);
@@ -170,7 +167,7 @@ const cardSection = new Section(
   },
   ".elements"
 );
-let myInfo = null;
+//let myInfo = null;
 
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",

@@ -3,18 +3,22 @@ class UserInfo {
     profileNameSelector,
     profileDescriptionSelector,
     userAvatarSelector,
+    id,
   }) {
     this._profileNameEl = document.querySelector(profileNameSelector);
     this._profileDescriptionEl = document.querySelector(
       profileDescriptionSelector
     );
     this._userAvatarEl = document.querySelector(userAvatarSelector);
+    this._id = id;
   }
 
   getUserInfo() {
     return {
       profileName: this._profileNameEl.textContent,
       profileDescription: this._profileDescriptionEl.textContent,
+      id: this._id,
+      userAvatar: this._userAvatarEl.src,
       //userAvatar: this._userAvatarEl.style.backgroundImage.slice(5, -2),
     };
   }

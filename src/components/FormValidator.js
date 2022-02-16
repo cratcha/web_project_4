@@ -40,6 +40,14 @@ export class FormValidator {
     }
   }
 
+  resetValidation() {
+    this.toggleButtonState();
+
+    this._inputs.forEach((input) => {
+      this._removeErrorMessage(input);
+    });
+  }
+
   _checkInputValidity(input) {
     if (input.validity.valid) {
       this._removeErrorStyles(input, this._config);
