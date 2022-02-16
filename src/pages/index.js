@@ -117,7 +117,7 @@ const createCard = (cardData) => {
   const card = new Card(
     {
       data: { ...cardData },
-      currentUserId: userData,
+      currentUserId: userData.getUserId(),
       handlePictureClick: (cardData) => {
         imagePopup.openModal(cardData);
       },
