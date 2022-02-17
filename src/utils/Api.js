@@ -25,6 +25,7 @@ export default class Api {
   }
 
   editUserInfo({ name, about }) {
+    console.log({ name, about });
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,

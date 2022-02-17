@@ -38,6 +38,10 @@ export class Card {
   _setEventListeners() {
     this.likeButton = this._element.querySelector(".element__like-button");
     this.cardImage = this._element.querySelector(".element__photo");
+    this.cardTitle = this._element.querySelector(".element__title");
+    this._likesCounter = this._element.querySelector(
+      ".element__like-button__counter"
+    );
 
     this.cardImage.addEventListener("click", () =>
       this._handlePictureClick({
@@ -60,29 +64,21 @@ export class Card {
     this._setEventListeners();
 
     this.cardImage.src = this._link;
-    this._element.querySelector(".element__title").textContent = this._text;
-    this._element.querySelector(".element__photo").alt = this._text;
+    this.cardTitle.textContent = this._text;
+    this.cardImage.alt = this._text;
 
     return this._element;
   }
 
   updateLikes() {
-    this._element.querySelector(".element__like-button__counter").textContent =
-      this._likes.length;
+    this._likesCounter.textContent = this._likes.length;
 
     if (this.checkIfLiked())
       this.likeButton.classList.add("element__like-button_activated");
     else this.likeButton.classList.remove("element__like-button_activated");
   }
 
-  /* _handleLike() {
-    this._element
-      .querySelector(".element__like-button")
-      .classList.toggle("element__like-button_activated");
-  }*/
-
   checkIfLiked() {
-    debugger;
     return Boolean(this._likes.find((item) => item._id === this._userId));
   }
 

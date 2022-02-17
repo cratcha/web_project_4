@@ -1,3 +1,9 @@
+export const elements = {
+  editProfilePopup: document.querySelector("#edit-profile-modal"),
+  addCardModal: document.querySelector("#add-card-modal"),
+  addAvatarModal: document.querySelector("#change-avatar-modal"),
+};
+
 export const validationConfig = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -6,11 +12,6 @@ export const validationConfig = {
   inactiveButtonClass: "modal__submit-button_disabled",
   inputWithError: "modal__input_has-error",
   errorTextVisible: "modal__error-text_visible",
-};
-
-export const elements = {
-  editProfilePopup: document.querySelector("#edit-profile-modal"),
-  addCardModal: document.querySelector("#add-card-modal"),
 };
 
 export const selectors = {};

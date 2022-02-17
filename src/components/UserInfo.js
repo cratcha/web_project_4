@@ -3,14 +3,14 @@ class UserInfo {
     profileNameSelector,
     profileDescriptionSelector,
     userAvatarSelector,
-    id,
+    _id,
   }) {
     this._profileNameEl = document.querySelector(profileNameSelector);
     this._profileDescriptionEl = document.querySelector(
       profileDescriptionSelector
     );
     this._userAvatarEl = document.querySelector(userAvatarSelector);
-    this._id = id;
+    this._id = _id;
   }
 
   getUserId() {
@@ -26,10 +26,11 @@ class UserInfo {
       //userAvatar: this._userAvatarEl.style.backgroundImage.slice(5, -2),
     };
   }
-  setUserInfo({ profileName, profileDescription }) {
-    if (profileName) this._profileNameEl.textContent = profileName;
-    if (profileDescription)
-      this._profileDescriptionEl.textContent = profileDescription;
+
+  setUserInfo({ name, about, _id }) {
+    if (name) this._profileNameEl.textContent = name;
+    if (about) this._profileDescriptionEl.textContent = about;
+    if (_id) this._id = _id;
   }
 
   setAvatar({ userAvatar }) {

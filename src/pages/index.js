@@ -50,13 +50,13 @@ const editProfilePopup = new PopupWithForm({
     renderLoading("#edit-profile-modal", true);
     api
       .editUserInfo({
-        name: data.profileName,
-        about: data.profileDescription,
+        name: data.name,
+        about: data.about,
       })
       .then((info) => {
         userData.setUserInfo({
-          profileName: info.name,
-          profileDescription: info.about,
+          name: info.name,
+          about: info.about,
         });
         editProfilePopup.closeModal();
       })
@@ -69,6 +69,9 @@ const editProfilePopup = new PopupWithForm({
   },
 });
 
+const editAvatar = new FormValidator(validationConfig, elements.addAvatarModal);
+editAvatar.enableValidation;
+
 const updateAvatarPopup = new PopupWithForm({
   popupSelector: "#change-avatar-modal",
   handleFormSubmit: (data) => {
@@ -77,6 +80,7 @@ const updateAvatarPopup = new PopupWithForm({
       .updateAvatar({ avatar: data.avatar })
       .then((info) => {
         userData.setAvatar({ userAvatar: info.avatar });
+        //editAvatar.resetValidation();
         updateAvatarPopup.closeModal();
       })
       .catch((err) => console.log(`Unable change the user avatar: ${res}`))
@@ -90,16 +94,10 @@ updateAvatarPopup.setEventListeners();
 
 const openAvatarModalButton = document.querySelector("#edit-avatar-button");
 
-const editAvatar = new FormValidator(
-  validationConfig,
-  document.querySelector("#change-profile-form")
-);
-editAvatar.enableValidation;
-
 openAvatarModalButton.addEventListener("click", () => {
   updateAvatarPopup.openModal();
   editAvatar.resetValidation();
-  //editAvatar.toggleButtonState();
+  editAvatar.toggleButtonState();
 });
 
 openProfileModalButton.addEventListener("click", () => {
@@ -150,8 +148,8 @@ const createCard = (cardData) => {
 api
   .getAppInfo()
   .then(([initialCards, userInfo]) => {
+    console.log("userInfo", userInfo);
     cardSection.items = initialCards;
-    //myInfo = userInfo;
     userData.setUserInfo(userInfo);
 
     cardSection.renderItems();
@@ -167,7 +165,6 @@ const cardSection = new Section(
   },
   ".elements"
 );
-//let myInfo = null;
 
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
