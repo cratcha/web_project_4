@@ -97,7 +97,7 @@ const openAvatarModalButton = document.querySelector("#edit-avatar-button");
 openAvatarModalButton.addEventListener("click", () => {
   updateAvatarPopup.openModal();
   editAvatar.resetValidation();
-  editAvatar.toggleButtonState();
+  //editAvatar.toggleButtonState();
 });
 
 openProfileModalButton.addEventListener("click", () => {
