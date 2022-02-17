@@ -148,7 +148,6 @@ const createCard = (cardData) => {
 api
   .getAppInfo()
   .then(([initialCards, userInfo]) => {
-    console.log("userInfo", userInfo);
     cardSection.items = initialCards;
     userData.setUserInfo(userInfo);
 

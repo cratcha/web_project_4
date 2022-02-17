@@ -42,7 +42,7 @@ export class Card {
     this._likesCounter = this._element.querySelector(
       ".element__like-button__counter"
     );
-
+    this.updateLikes();
     this.cardImage.addEventListener("click", () =>
       this._handlePictureClick({
         url: this._link,
@@ -75,7 +75,9 @@ export class Card {
 
     if (this.checkIfLiked())
       this.likeButton.classList.add("element__like-button_activated");
-    else this.likeButton.classList.remove("element__like-button_activated");
+    else {
+      this.likeButton.classList.remove("element__like-button_activated");
+    }
   }
 
   checkIfLiked() {
