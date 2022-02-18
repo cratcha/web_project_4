@@ -39,10 +39,13 @@ export class Card {
     this.likeButton = this._element.querySelector(".element__like-button");
     this.cardImage = this._element.querySelector(".element__photo");
     this.cardTitle = this._element.querySelector(".element__title");
+    this._trashButton = this._element.querySelector(".element__trash");
     this._likesCounter = this._element.querySelector(
       ".element__like-button__counter"
     );
+
     this.updateLikes();
+
     this.cardImage.addEventListener("click", () =>
       this._handlePictureClick({
         url: this._link,
@@ -54,14 +57,17 @@ export class Card {
       this._handleLikeClick(this)
     );
 
-    this._element
-      .querySelector(".element__trash")
-      .addEventListener("click", () => this._handleTrashButtonClick(this));
+    this._trashButton.addEventListener("click", () =>
+      this._handleTrashButtonClick(this)
+    );
   }
 
   generateCard() {
     this._element = this._getTemplate();
+
     this._setEventListeners();
+
+    this.makeTrashButtonInvisible();
 
     this.cardImage.src = this._link;
     this.cardTitle.textContent = this._text;
@@ -70,12 +76,18 @@ export class Card {
     return this._element;
   }
 
+  makeTrashButtonInvisible() {
+    if (this._ownerID != this._userId) {
+      this._trashButton.remove();
+    }
+  }
+
   updateLikes() {
     this._likesCounter.textContent = this._likes.length;
 
-    if (this.checkIfLiked())
+    if (this.checkIfLiked()) {
       this.likeButton.classList.add("element__like-button_activated");
-    else {
+    } else {
       this.likeButton.classList.remove("element__like-button_activated");
     }
   }
