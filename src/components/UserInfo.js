@@ -22,21 +22,19 @@ class UserInfo {
       profileName: this._profileNameEl.textContent,
       profileDescription: this._profileDescriptionEl.textContent,
       id: this._id,
-      userAvatar: this._userAvatarEl.src,
-      //userAvatar: this._userAvatarEl.style.backgroundImage.slice(5, -2),
+      avatar: this._userAvatarEl.src,
     };
   }
 
-  setUserInfo({ name, about, _id }) {
+  setUserInfo({ name, about, avatar, _id }) {
     if (name) this._profileNameEl.textContent = name;
     if (about) this._profileDescriptionEl.textContent = about;
+    if (avatar) this._userAvatarEl.src = avatar;
     if (_id) this._id = _id;
   }
 
-  setAvatar({ userAvatar }) {
-    if (userAvatar) {
-      this._userAvatarEl.src = userAvatar;
-    }
+  setAvatar({ link }) {
+    this._userAvatarEl.src = link;
   }
 }
 

@@ -70,17 +70,16 @@ const editProfilePopup = new PopupWithForm({
 });
 
 const editAvatar = new FormValidator(validationConfig, elements.addAvatarModal);
-editAvatar.enableValidation;
+editAvatar.enableValidation();
 
 const updateAvatarPopup = new PopupWithForm({
   popupSelector: "#change-avatar-modal",
   handleFormSubmit: (data) => {
     renderLoading("#change-avatar-modal", true);
     api
-      .updateAvatar({ avatar: data.avatar })
+      .updateAvatar({ avatar: data.link })
       .then((info) => {
-        userData.setAvatar({ userAvatar: info.avatar });
-        //editAvatar.resetValidation();
+        userData.setAvatar({ link: info.avatar });
         updateAvatarPopup.closeModal();
       })
       .catch((err) => console.log(`Unable change the user avatar: ${res}`))
