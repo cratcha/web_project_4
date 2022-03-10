@@ -19,9 +19,9 @@ const descriptionInput = editProfileForm.description;
 const addCardButton = document.querySelector(".profile__add-button");
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  baseUrl: "https://around.nomoreparties.co/v1/group-11",
   headers: {
-    authorization: "4921d172-e47d-477d-bceb-cfdae220d52e",
+    authorization: "31f62eb8-38ec-46e4-a611-45b4f4685de4",
     "Content-Type": "application/json",
   },
 });
